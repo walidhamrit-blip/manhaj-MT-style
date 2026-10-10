@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#122b3f">
+<meta name="description" content="شركة المنهج للقرطاسية — قرطاسية، لوازم مدرسية، أدوات مكتبية وفنية في طرابلس، ليبيا.">
+<title>شركة المنهج للقرطاسية | Al Manhaj Stationery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{
+--navy:#122b3f;--navy2:#091e2d;--red:#e30613;--red2:#bd0712;--yellow:#ffd600;
+--green:#22a85a;--cyan:#65d2d5;--orange:#ff9259;--purple:#c99bdb;--muted:#6d7780;
+--bg:#f4f5f6;--line:#dce1e4;--shadow:0 6px 20px rgba(15,35,50,.13);
+--container:1180px
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:155px}
+body{margin:0;color:#1d2730;background:var(--bg);font-family:"Cairo","Inter",sans-serif;font-size:14px;overflow-x:hidden}
+html[dir=ltr] body,html[dir=ltr] button,html[dir=ltr] input,html[dir=ltr] select{font-family:"Inter","Cairo",sans-serif}
+button,input,select{font:inherit}button{border:0;cursor:pointer}a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
+.container{width:min(var(--container),calc(100% - 28px));margin-inline:auto}
+.top-offer{min-height:39px;display:flex;align-items:center;color:#fff;background:linear-gradient(90deg,#bd000b,#ec0011,#bd000b);font-weight:800}
+.top-offer .container{display:flex;align-items:center;justify-content:center;gap:13px;text-align:center}.top-offer strong{color:var(--yellow);font-size:16px}
+.countdown{display:flex;direction:ltr;gap:4px}.countdown b{min-width:27px;padding:2px 5px;color:#111;background:#fff;border-radius:3px;font-size:11px}
+.utility{color:#dbe4e9;background:var(--navy2);font-size:11px}.utility-inner{min-height:33px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.utility-links,.utility-contact{display:flex;gap:20px}.utility a,.utility button{padding:0;color:inherit;background:none}.utility i{margin-inline-end:5px;color:#ff5963}
+.header-stack{position:sticky;z-index:1000;top:0;box-shadow:0 3px 14px rgba(0,0,0,.15)}
+.main-header{background:#fff}.header-inner{min-height:79px;display:grid;grid-template-columns:225px minmax(300px,1fr) auto;align-items:center;gap:22px}
+.logo{min-height:52px;display:flex;align-items:center;gap:10px;padding:7px 12px;color:#fff;background:linear-gradient(135deg,var(--red),#b5000a);border-radius:2px;box-shadow:4px 4px 0 #172d3f;transform:skew(-5deg)}
+.logo>*{transform:skew(5deg)}.logo i{font-size:25px}.logo-main{display:block;font:900 21px/1 "Inter",sans-serif;letter-spacing:-.8px}.logo-sub{display:block;margin-top:4px;font-size:8px;font-weight:700}
+.search-wrap{position:relative}.search-form{height:45px;display:grid;grid-template-columns:130px 1fr 52px;overflow:hidden;background:#fff;border:2px solid var(--navy);border-radius:5px}
+.search-form select{padding-inline:8px;border:0;border-inline-end:1px solid #d6dce0;background:#f4f6f7;outline:0;font-size:11px}
+.search-form input{min-width:0;padding-inline:15px;border:0;outline:0}.search-form button{color:#fff;background:var(--red);font-size:17px}
+.suggestions{position:absolute;z-index:20;top:50px;inset-inline:0;display:none;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.suggestions.active{display:block}.suggestion{width:100%;display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:10px;padding:8px;text-align:start;background:#fff;border-bottom:1px solid #edf0f2}
+.suggestion:hover{background:#f5f7f8}.suggestion img{width:48px;height:40px;object-fit:cover}.suggestion span{font-size:11px;font-weight:700}.suggestion b{color:var(--red);font-size:11px}
+.actions{display:flex;align-items:center;gap:5px}.head-action{position:relative;min-width:66px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px;color:#263845;background:none;border-radius:4px}
+.head-action:hover{color:var(--red);background:#f4f5f6}.head-action i{font-size:20px}.head-action>span:not(.badge){font-size:9px;font-weight:700}.badge{position:absolute;top:0;inset-inline-end:7px;min-width:17px;height:17px;display:grid;place-items:center;padding:0 4px;color:#fff;background:var(--red);border:2px solid #fff;border-radius:20px;font-size:8px}
+.menu-btn{display:none;width:42px;height:42px;place-items:center;color:#fff;background:var(--navy);border-radius:4px}
+.category-nav{color:#fff;background:var(--navy)}.nav-inner{position:relative;min-height:43px;display:flex}.departments{min-width:225px;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;background:var(--red);font-size:11px;font-weight:800}
+.main-nav{flex:1;display:flex;overflow:hidden}.main-nav a{flex:1;min-width:max-content;display:grid;place-items:center;padding:0 11px;border-inline-end:1px solid rgba(255,255,255,.1);font-size:11px;font-weight:700}.main-nav a:hover{background:#213f56}.main-nav .sale{color:#111;background:var(--yellow)}
+.mega{position:absolute;top:43px;inset-inline-start:0;width:min(820px,92vw);display:none;grid-template-columns:repeat(4,1fr);padding:16px;color:#263640;background:#fff;border-top:3px solid var(--red);box-shadow:0 12px 28px rgba(0,0,0,.2)}
+.mega.active{display:grid}.mega-group{padding:5px 15px;border-inline-end:1px solid #e2e6e8}.mega-group:last-child{border:0}.mega h4{margin:0 0 7px;color:var(--red);font-size:12px}.mega button{width:100%;padding:5px 0;text-align:start;color:#5d6970;background:none;font-size:11px}.mega button:hover{color:var(--red)}
+.drawer{position:fixed;z-index:1400;top:0;bottom:0;inset-inline-start:0;width:min(340px,88vw);overflow:auto;background:#fff;box-shadow:0 0 35px #0005;transform:translateX(110%);transition:.3s}
+html[dir=ltr] .drawer{transform:translateX(-110%)}.drawer.open{transform:translateX(0)}.drawer-head{min-height:72px;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;color:#fff;background:var(--navy)}
+.drawer-head button{width:38px;height:38px;color:#fff;background:#ffffff18;border-radius:50%}.drawer-links a,.drawer-links button{width:100%;display:flex;align-items:center;gap:12px;padding:13px 18px;text-align:start;color:#283842;background:#fff;border-bottom:1px solid #edf0f2;font-size:12px;font-weight:700}.drawer-links i{width:22px;color:var(--red);text-align:center}
+.overlay{position:fixed;z-index:1300;inset:0;display:none;background:#071824a8;backdrop-filter:blur(2px)}.overlay.active{display:block}
+.hero-area{padding-top:13px}.hero-grid{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(280px,.9fr);gap:10px}.slider{position:relative;min-height:440px;overflow:hidden;background:var(--navy);box-shadow:var(--shadow)}
+.slide{position:absolute;inset:0;display:flex;align-items:center;padding:clamp(30px,5vw,65px);color:#fff;background-position:center;background-size:cover;opacity:0;visibility:hidden;transform:scale(1.02);transition:.6s}
+.slide:before,.offer-card:before,.promo:before,.sale-banner:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,16,24,.94),rgba(7,22,33,.72) 52%,rgba(7,15,22,.1))}
+html[dir=rtl] .slide:before,html[dir=rtl] .offer-card:before,html[dir=rtl] .promo:before,html[dir=rtl] .sale-banner:before{background:linear-gradient(270deg,rgba(5,16,24,.94),rgba(7,22,33,.72) 52%,rgba(7,15,22,.1))}
+.slide.active{opacity:1;visibility:visible;transform:scale(1)}.hero-content{position:relative;z-index:2;width:min(550px,78%)}.kicker{display:inline-flex;gap:7px;padding:5px 10px;color:#151515;background:var(--yellow);border-radius:3px;font-size:11px;font-weight:900}
+.hero-content h1{margin:10px 0 0;font-size:clamp(31px,4vw,52px);line-height:1.15}.hero-content p{margin:13px 0 20px;color:#e6edf1;font-size:14px;line-height:1.9}.hero-price{margin-bottom:17px;color:var(--yellow);font-size:31px;font-weight:900}.hero-price small{color:#fff;font-size:11px}
+.btn{min-height:42px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 19px;color:#fff;background:var(--red);border-radius:3px;font-size:11px;font-weight:800;transition:.2s}.btn:hover{background:var(--red2);transform:translateY(-2px)}.btn.outline{background:transparent;border:1px solid #ffffffb8}.btn.outline:hover{color:#111;background:#fff}
+.slider-controls{position:absolute;z-index:4;bottom:16px;inset-inline:20px;display:flex;justify-content:space-between}.dots{display:flex;gap:6px;align-items:center}.dot{width:9px;height:9px;padding:0;background:#ffffff8c;border-radius:9px}.dot.active{width:25px;background:var(--red)}.arrows{display:flex;gap:5px}.arrow{width:38px;height:38px;color:#fff;background:#091c2bbd;border:1px solid #ffffff44}.arrow:hover{background:var(--red)}
+.hero-side{display:grid;grid-template-rows:1fr 1fr;gap:10px}.offer-card{position:relative;min-height:215px;display:flex;align-items:flex-end;overflow:hidden;padding:22px;color:#fff;background-position:center;background-size:cover;box-shadow:var(--shadow)}.offer-card:before{background:linear-gradient(0deg,rgba(3,14,21,.96),rgba(7,17,25,.04) 75%)}
+.offer-content{position:relative;z-index:2}.offer-content small{color:var(--yellow);font-weight:800}.offer-content h2{margin:3px 0 8px;font-size:22px;line-height:1.25}.offer-content strong{color:var(--yellow);font-size:20px}.offer-content button{margin-inline-start:8px;padding:6px 10px;color:#fff;background:var(--red);font-size:9px;font-weight:800}
+.benefits{margin-top:10px;display:grid;grid-template-columns:repeat(4,1fr);color:#fff;background:var(--navy)}.benefit{min-height:76px;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px;border-inline-end:1px solid #ffffff20}.benefit i{color:var(--yellow);font-size:24px}.benefit strong,.benefit small{display:block}.benefit strong{font-size:11px}.benefit small{color:#cbd7de;font-size:8px}
+.section{margin-top:18px;padding:17px 0 0;background:#fff;border:1px solid #e0e4e6}.heading{display:flex;align-items:center;gap:17px;margin:0 18px 14px}.heading:before,.heading:after{content:"";height:1px;flex:1;background:#7e868c}.heading div{text-align:center}.heading h2{margin:0;font-size:18px}.heading p{margin:2px 0;color:#899198;font-size:9px}
+.category-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;padding:0 14px 17px}.category{min-height:133px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:8px;color:#284052;background:#f7f8f9;border:1px solid #e3e7e9;border-radius:4px;transition:.2s}.category:hover{transform:translateY(-4px);border-color:var(--red);box-shadow:0 7px 16px #1c2c361b}.category-icon{width:64px;height:64px;display:grid;place-items:center;color:#fff;background:linear-gradient(145deg,var(--navy),#315c78);border-radius:50%;font-size:27px;box-shadow:inset 0 0 0 5px #ffffff14}.category:nth-child(even) .category-icon{background:linear-gradient(145deg,var(--red),#a9000b)}.category span:last-child{font-size:10px;font-weight:800}
+.product-section{margin-top:18px;padding-top:13px;overflow:hidden;background:#fff;border:1px solid #dfe3e5}.product-bar{min-height:40px;display:flex;align-items:center;justify-content:space-between;margin:-13px 0 13px;padding:0 14px;color:#172b39;background:#e8ecef}.product-bar.red{color:#fff;background:var(--red)}.product-bar.cyan{background:#84d7d6}.product-bar.orange{background:#ff9259}.product-bar.green{background:#9fc958}.product-bar.purple{background:#d6a2dd}.product-bar h2{margin:0;font-size:13px}.view-all{color:inherit;background:none;font-size:9px;font-weight:800}
+.carousel{position:relative}.track{display:flex;gap:8px;overflow-x:auto;padding:0 12px 14px;direction:ltr;scroll-behavior:smooth;scroll-snap-type:x proximity;scrollbar-width:none}.track::-webkit-scrollbar{display:none}
+.product{position:relative;flex:0 0 calc((100% - 32px)/5);min-width:205px;min-height:365px;display:flex;flex-direction:column;overflow:hidden;background:#fff;border:1px solid #d9dee1;box-shadow:0 2px 3px #1f2d3514;scroll-snap-align:start;transition:.2s}
+html[dir=rtl] .product{direction:rtl}.product:hover{transform:translateY(-3px);border-color:#aeb7bd;box-shadow:0 8px 20px #1c2b3421}.discount{position:absolute;z-index:2;top:8px;inset-inline-start:8px;padding:4px 7px;color:#fff;background:var(--red);font-size:9px;font-weight:900}.stock{position:absolute;z-index:2;top:8px;inset-inline-end:8px;padding:4px 6px;color:#177b43;background:#dff6e9;font-size:8px;font-weight:800}
+.fav{position:absolute;z-index:3;top:38px;inset-inline-end:8px;width:31px;height:31px;color:#7c888f;background:#fff;border:1px solid #dce1e4;border-radius:50%;opacity:0}.product:hover .fav,.fav.active{opacity:1}.fav.active{color:var(--red)}
+.product-image{position:relative;height:174px;overflow:hidden;background:#f4f6f7}.product-image img{width:100%;height:100%;object-fit:cover;transition:.4s}.product:hover img{transform:scale(1.055)}.quick{position:absolute;bottom:9px;left:50%;padding:7px 12px;color:#fff;background:#122b3fee;transform:translate(-50%,10px);opacity:0;font-size:9px;font-weight:800;white-space:nowrap}.product:hover .quick{opacity:1;transform:translate(-50%,0)}
+.product-info{flex:1;display:flex;flex-direction:column;padding:9px 10px}.brand{color:var(--navy);font:900 10px "Inter",sans-serif}.product-title{min-height:39px;margin:4px 0 2px;overflow:hidden;font-size:10px;line-height:1.55;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.rating{color:#f3ae00;font-size:9px}.rating span{color:#8a9399;font-size:8px}.price-row{display:flex;align-items:end;gap:7px;margin-top:auto;padding-top:7px}.price{color:#c9000d;font-size:21px;font-weight:900;white-space:nowrap}.price small{font-size:9px}.old{color:#555;font-size:9px;text-decoration:line-through}.card-actions{display:flex;gap:6px;margin-top:7px}.add{flex:1;min-height:34px;color:#fff;background:var(--red);font-size:9px;font-weight:800}.compare{width:35px;background:#edf0f2}.compare.active{color:#fff;background:var(--navy)}
+.carousel-btn{position:absolute;z-index:5;top:43%;width:37px;height:58px;color:#44545e;background:#fffffff2;border:1px solid #d7dde0;box-shadow:0 4px 10px #00000017}.carousel-btn:hover{color:#fff;background:var(--red)}.prev{left:0}.next{right:0}
+.promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.promo{position:relative;min-height:230px;display:flex;align-items:center;overflow:hidden;padding:28px;color:#fff;background-position:center;background-size:cover;box-shadow:var(--shadow)}.promo.red:before{background:linear-gradient(90deg,rgba(194,0,13,.96),rgba(194,0,13,.62),transparent)}html[dir=rtl] .promo.red:before{background:linear-gradient(270deg,rgba(194,0,13,.96),rgba(194,0,13,.62),transparent)}.promo-content{position:relative;z-index:2;max-width:320px}.promo h3{margin:0 0 7px;font-size:28px}.promo p{font-size:11px}.promo-price{display:block;margin:10px 0;color:var(--yellow);font-size:26px;font-weight:900}
+.sale-banner{position:relative;min-height:190px;display:flex;align-items:center;margin-top:18px;overflow:hidden;padding:30px 42px;color:#fff;background-position:center;background-size:cover;box-shadow:var(--shadow)}.sale-banner.green:before{background:linear-gradient(90deg,rgba(18,74,46,.97),rgba(22,104,63,.78),transparent)}html[dir=rtl] .sale-banner.green:before{background:linear-gradient(270deg,rgba(18,74,46,.97),rgba(22,104,63,.78),transparent)}.banner-content{position:relative;z-index:2;max-width:570px}.banner-content small{color:var(--yellow);font-weight:900}.banner-content h2{margin:4px 0;font-size:clamp(29px,4vw,46px)}.banner-content p{margin:5px 0 12px}.banner-discount{margin-bottom:12px;color:var(--yellow);font-size:29px;font-weight:900}
+.brands{margin-top:18px;padding:16px 18px;background:#fff;border:1px solid #e0e4e6}.brand-row{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}.brand-btn{min-height:64px;color:#33454f;background:#f8f9fa;border:1px solid #e4e8ea;font:900 14px "Inter",sans-serif}.brand-btn:hover{color:var(--red);border-color:var(--red);transform:translateY(-2px)}
+.service{min-height:145px;display:grid;grid-template-columns:1fr 1fr;margin-top:18px;color:#fff;background:var(--navy);box-shadow:var(--shadow)}.service-main,.service-contact{display:flex;align-items:center;gap:22px;padding:25px 35px}.service-main{color:#172834;background:linear-gradient(135deg,#ffd923,#f7b900)}.service-main i{color:var(--red);font-size:58px}.service h2{margin:0;font-size:26px}.service p{margin:5px 0;font-size:11px;font-weight:700}.service-contact{justify-content:space-between;background:linear-gradient(135deg,#153a4d,#082b39)}
+.stores{margin-top:18px;padding:20px 0;background:#fff;border:1px solid #e0e4e6}.store-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;padding:0 18px}.store{position:relative;min-height:190px;padding:18px 18px 16px 112px;background:#f1f2f3;border:1px solid #d9dfe2}.store-image{position:absolute;top:18px;left:16px;width:78px;height:78px;overflow:hidden;border:3px solid var(--red);border-radius:50%}html[dir=rtl] .store{padding:18px 112px 16px 18px}html[dir=rtl] .store-image{right:16px;left:auto}.store-image img{width:100%;height:100%;object-fit:cover}.store h3{margin:0 0 7px;color:#178eb8;font-size:13px}.store p{margin:5px 0;font-size:9px}.store i{width:16px;color:var(--red)}.map-btn{margin-top:7px;padding:6px 10px;color:#fff;background:var(--navy);font-size:9px;font-weight:800}
+.about{margin-top:18px;padding:25px 38px;text-align:center;color:#5c6971;background:#fff;border:1px solid #e1e5e7;font-size:11px;line-height:1.9}.about strong{color:var(--navy)}
+.social{margin-top:25px;padding:15px;background:#c8cacc}.social-row{display:flex;justify-content:center;gap:20px}.social a{width:40px;height:40px;display:grid;place-items:center;color:#fff;border-radius:50%;font-size:19px}.social a:nth-child(1){background:#1877f2}.social a:nth-child(2){background:#d62976}.social a:nth-child(3){background:#ff0000}.social a:nth-child(4){background:#25d366}
+footer{background:#dfe1e3}.footer-grid{display:grid;grid-template-columns:1fr 1fr 1.2fr 1.5fr;gap:34px;padding:30px 0}.footer-col h3{margin:0 0 13px;font-size:12px}.footer-col a,.footer-col p{display:block;margin:7px 0;color:#56636b;font-size:10px;line-height:1.6}.footer-col a:hover{color:var(--red)}.footer-col i{width:20px;color:var(--red)}.newsletter{display:flex;margin-top:10px}.newsletter input{min-width:0;flex:1;height:38px;padding:0 10px;border:1px solid #bfc6ca;outline:0}.newsletter button{padding:0 15px;color:#fff;background:var(--green);font-size:9px;font-weight:800}.payments{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.payments span{padding:4px 8px;background:#fff;border:1px solid #bcc5ca;font:900 9px "Inter"}
+.footer-benefits{display:grid;grid-template-columns:repeat(5,1fr);background:#eef0f1;border-top:1px solid #c6cbce}.footer-benefit{min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;border-inline-end:1px solid #d6dade;font-size:9px;font-weight:800}.footer-benefit i{width:39px;height:39px;display:grid;place-items:center;color:#fff;background:var(--red);border-radius:50%;font-size:17px}.copyright{padding:13px;color:#b8c4cb;background:var(--navy2);text-align:center;font-size:9px}
+.cart{position:fixed;z-index:1500;top:0;bottom:0;inset-inline-end:0;width:min(420px,94vw);display:flex;flex-direction:column;background:#fff;box-shadow:0 0 35px #0005;transform:translateX(-110%);transition:.3s}html[dir=ltr] .cart{transform:translateX(110%)}.cart.open{transform:translateX(0)}.cart-head{min-height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 19px;color:#fff;background:var(--navy)}.cart-head h2{font-size:17px}.close{width:38px;height:38px;color:#fff;background:#ffffff18;border-radius:50%}.cart-items{flex:1;overflow:auto;padding:12px}.empty{min-height:360px;display:grid;place-items:center;text-align:center;color:#818c93}.empty i{display:block;margin-bottom:12px;color:#d3d9dc;font-size:55px}
+.cart-item{display:grid;grid-template-columns:75px 1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid #e4e8ea}.cart-item img{width:75px;height:65px;object-fit:cover}.cart-item h4{margin:0;font-size:10px}.cart-item strong{color:var(--red)}.qty{display:inline-flex;margin-top:6px;border:1px solid #d4dade}.qty button{width:27px;height:25px;background:#edf0f2}.qty span{min-width:28px;text-align:center;font-size:10px}.remove{width:29px;height:29px;color:#9b1820;background:#ffe6e8;border-radius:50%}.cart-footer{padding:16px 18px 20px;border-top:1px solid #dfe4e6}.total{display:flex;justify-content:space-between;margin-bottom:12px;font-weight:800}.total strong{color:var(--red);font-size:21px}.checkout{width:100%;min-height:45px;color:#fff;background:var(--red);font-weight:900}
+.modal-layer{position:fixed;z-index:1600;inset:0;display:none;align-items:center;justify-content:center;padding:18px;background:#06121bb5;backdrop-filter:blur(3px)}.modal-layer.active{display:flex}.modal{width:min(880px,96vw);max-height:91vh;overflow:hidden;background:#fff;border-radius:6px;box-shadow:0 20px 60px #0006}.modal-head{min-height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 19px;color:#fff;background:var(--navy)}.modal-head h2{margin:0;font-size:16px}.modal-body{max-height:calc(91vh - 58px);overflow:auto;padding:20px}.quick-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:25px}.quick-image{height:350px}.quick-image img{width:100%;height:100%;object-fit:cover}.quick-details h3{font-size:24px}.quick-details p{color:#68757d;line-height:1.8}.quick-details .price{display:block;margin:14px 0;font-size:32px}
+.results{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.result{border:1px solid var(--line)}.result img{width:100%;height:130px;object-fit:cover}.result div{padding:9px}.result h4{min-height:38px;margin:0;font-size:10px}.result strong{color:var(--red)}.result button{width:100%;margin-top:7px;padding:8px;color:#fff;background:var(--navy);font-size:9px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.field label{font-size:10px;font-weight:800}.field input,.field select{height:43px;padding:8px;border:1px solid #cfd6da;outline:0}.submit{min-height:44px;padding:0 24px;color:#fff;background:var(--red);font-weight:900}
+.toasts{position:fixed;z-index:1800;bottom:22px;inset-inline-start:22px}.toast{margin-top:7px;padding:12px 15px;color:#fff;background:#17374c;border-inline-start:4px solid var(--green);box-shadow:0 9px 25px #0004;font-size:11px;font-weight:700}.floating{position:fixed;z-index:900;bottom:20px;inset-inline-end:19px;display:flex;flex-direction:column;gap:9px}.float{width:49px;height:49px;display:grid;place-items:center;color:#fff;background:#25d366;border-radius:50%;box-shadow:0 7px 18px #0004;font-size:22px}.back{display:none;background:var(--navy);font-size:15px}.back.show{display:grid}
+@media(max-width:1050px){.header-inner{grid-template-columns:190px 1fr auto;gap:14px}.logo-main{font-size:18px}.head-action{min-width:50px}.head-action>span:not(.badge){display:none}.category-grid{grid-template-columns:repeat(4,1fr)}.product{flex-basis:calc((100% - 24px)/4)}.brand-row{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:860px){html{scroll-padding-top:126px}.utility{display:none}.header-inner{min-height:125px;grid-template-columns:48px 1fr auto;grid-template-rows:63px 51px;gap:4px 10px}.menu-btn{display:grid}.logo{width:185px;min-height:43px}.search-wrap{grid-column:1/-1;grid-row:2}.category-nav{display:none}.hero-grid{grid-template-columns:1fr}.slider{min-height:400px}.hero-side{grid-template-columns:1fr 1fr;grid-template-rows:none}.benefits{grid-template-columns:1fr 1fr}.benefit:nth-child(2){border-inline-end:0}.product{flex-basis:calc((100% - 16px)/3)}.store-grid{grid-template-columns:1fr 1fr}.service{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.results{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.container{width:calc(100% - 14px)}.top-offer{font-size:10px}.countdown{display:none}.header-inner{grid-template-columns:44px 1fr auto}.logo{width:150px;gap:6px}.logo-main{font-size:14px}.logo-sub{font-size:6px}.head-action{min-width:36px;padding:3px}.head-action:nth-child(2){display:none}.search-form{grid-template-columns:1fr 46px}.search-form select{display:none}.slider{min-height:400px}.slide{align-items:flex-start;padding:38px 22px 70px}.slide:before,html[dir=rtl] .slide:before{background:linear-gradient(0deg,#051018f2,#05101896)}.hero-content{width:100%}.hero-content h1{font-size:30px}.hero-content p{font-size:12px}.hero-side{grid-template-columns:1fr}.offer-card{min-height:180px}.benefit{min-height:83px;gap:8px}.benefit i{font-size:20px}.category-grid{grid-template-columns:repeat(2,1fr)}.product{flex-basis:76%;min-width:225px}.promo-grid{grid-template-columns:1fr}.sale-banner{min-height:245px;align-items:flex-end;padding:24px 20px}.sale-banner:before,.sale-banner.green:before,html[dir=rtl] .sale-banner:before,html[dir=rtl] .sale-banner.green:before{background:linear-gradient(0deg,#071722f5,#07172255)}.brand-row{grid-template-columns:repeat(2,1fr)}.service-main,.service-contact{padding:22px 18px}.service-contact{align-items:flex-start;flex-direction:column}.store-grid{grid-template-columns:1fr}.about{padding:20px 15px}.footer-grid{grid-template-columns:1fr}.footer-benefits{grid-template-columns:1fr 1fr}.quick-grid{grid-template-columns:1fr}.quick-image{height:240px}.results{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="top-offer">
+  <div class="container">
+    <i class="fa-solid fa-truck-fast"></i>
+    <span data-ar="توصيل مجاني داخل طرابلس للطلبات فوق" data-en="Free delivery in Tripoli on orders over"></span>
+    <strong><span class="money" data-price="150"></span></strong>
+    <div class="countdown" id="countdown"></div>
+  </div>
+</div>
+
+<div class="utility">
+  <div class="container utility-inner">
+    <div class="utility-links">
+      <a href="#stores"><i class="fa-solid fa-location-dot"></i><span data-ar="فروعنا" data-en="Store locator"></span></a>
+      <button id="trackBtn"><i class="fa-solid fa-box"></i><span data-ar="تتبع طلبك" data-en="Track order"></span></button>
+      <a href="#business"><i class="fa-solid fa-building"></i><span data-ar="توريد المدارس والشركات" data-en="School & business supply"></span></a>
+      <a href="#about"><i class="fa-solid fa-circle-info"></i><span data-ar="عن المنهج" data-en="About Al Manhaj"></span></a>
+    </div>
+    <div class="utility-contact">
+      <a href="tel:+218912345678"><i class="fa-solid fa-phone"></i>+218 91 234 5678</a>
+      <button class="language"><i class="fa-solid fa-globe"></i><span class="language-label">English</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="header-stack">
+<header class="main-header">
+  <div class="container header-inner">
+    <button class="menu-btn" id="menuBtn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    <a class="logo" href="#top">
+      <i class="fa-solid fa-pencil"></i>
+      <span><span class="logo-main">AL MANHAJ</span><span class="logo-sub" data-ar="شركة المنهج للقرطاسية" data-en="STATIONERY & SCHOOL SUPPLIES"></span></span>
+    </a>
+    <div class="search-wrap">
+      <form class="search-form" id="searchForm">
+        <select id="searchCategory">
+          <option value="" data-ar="كل الأقسام" data-en="All categories"></option>
+          <option value="school" data-ar="لوازم مدرسية" data-en="School supplies"></option>
+          <option value="office" data-ar="أدوات مكتبية" data-en="Office supplies"></option>
+          <option value="paper" data-ar="دفاتر وورق" data-en="Notebooks & paper"></option>
+          <option value="art" data-ar="رسم وفنون" data-en="Art supplies"></option>
+          <option value="bags" data-ar="حقائب ومقالم" data-en="Bags & cases"></option>
+        </select>
+        <input id="searchInput" type="search" autocomplete="off" data-ph-ar="ابحث عن دفتر، قلم، حقيبة مدرسية..." data-ph-en="Search notebooks, pens, school bags..." aria-label="Search">
+        <button aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+      <div class="suggestions" id="suggestions"></div>
+    </div>
+    <div class="actions">
+      <button class="head-action" id="accountBtn"><i class="fa-regular fa-user"></i><span data-ar="حسابي" data-en="Account"></span></button>
+      <button class="head-action" id="wishBtn"><i class="fa-regular fa-heart"></i><span data-ar="المفضلة" data-en="Wishlist"></span><span class="badge" id="wishCount">0</span></button>
+      <button class="head-action" id="cartBtn"><i class="fa-solid fa-cart-shopping"></i><span data-ar="السلة" data-en="Cart"></span><span class="badge" id="cartCount">0</span></button>
+    </div>
+  </div>
+</header>
+<nav class="category-nav">
+  <div class="container nav-inner">
+    <button class="departments" id="departments"><i class="fa-solid fa-bars"></i><span data-ar="جميع الأقسام" data-en="ALL DEPARTMENTS"></span><i class="fa-solid fa-chevron-down"></i></button>
+    <div class="main-nav">
+      <a href="#top" data-ar="الرئيسية" data-en="Home"></a>
+      <a href="#school" data-ar="لوازم مدرسية" data-en="School"></a>
+      <a href="#office" data-ar="المكتب" data-en="Office"></a>
+      <a href="#art" data-ar="الرسم والفنون" data-en="Art"></a>
+      <a href="#bags" data-ar="الحقائب" data-en="Bags"></a>
+      <a href="#stores" data-ar="فروعنا" data-en="Stores"></a>
+      <a href="#deals" class="sale" data-ar="عروض اليوم" data-en="TODAY'S DEALS"></a>
+    </div>
+    <div class="mega" id="mega">
+      <div class="mega-group"><h4 data-ar="الكتابة والتصحيح" data-en="Writing & Correction"></h4><button data-query="قلم|pen" data-ar="أقلام جاف وحبر" data-en="Ballpoint & ink pens"></button><button data-query="pencil" data-ar="أقلام رصاص" data-en="Pencils"></button><button data-query="marker" data-ar="أقلام تحديد" data-en="Markers & highlighters"></button><button data-query="correction" data-ar="ممحاة وتصحيح" data-en="Erasers & correction"></button></div>
+      <div class="mega-group"><h4 data-ar="الورق والدفاتر" data-en="Paper & Notebooks"></h4><button data-category="paper" data-ar="دفاتر مدرسية" data-en="School notebooks"></button><button data-query="copy" data-ar="ورق تصوير" data-en="Copy paper"></button><button data-query="sticky" data-ar="ملاحظات لاصقة" data-en="Sticky notes"></button><button data-query="folder" data-ar="ملفات وحافظات" data-en="Files & folders"></button></div>
+      <div class="mega-group"><h4 data-ar="المدرسة" data-en="School Essentials"></h4><button data-category="bags" data-ar="حقائب مدرسية" data-en="School bags"></button><button data-query="case" data-ar="مقالم" data-en="Pencil cases"></button><button data-query="geometry" data-ar="أدوات هندسية" data-en="Geometry sets"></button><button data-query="lunch" data-ar="علب طعام" data-en="Lunch boxes"></button></div>
+      <div class="mega-group"><h4 data-ar="الفنون والمكتب" data-en="Art & Office"></h4><button data-category="art" data-ar="ألوان ورسم" data-en="Colours & drawing"></button><button data-category="office" data-ar="أدوات مكتبية" data-en="Office supplies"></button><button data-query="calculator" data-ar="آلات حاسبة" data-en="Calculators"></button><button data-query="printer" data-ar="أحبار طابعات" data-en="Printer supplies"></button></div>
+    </div>
+  </div>
+</nav>
+</div>
+
+<aside class="drawer" id="drawer">
+  <div class="drawer-head"><strong>AL MANHAJ</strong><button class="close" id="closeDrawer"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="drawer-links">
+    <a href="#top"><i class="fa-solid fa-house"></i><span data-ar="الرئيسية" data-en="Home"></span></a>
+    <button data-category="school"><i class="fa-solid fa-graduation-cap"></i><span data-ar="اللوازم المدرسية" data-en="School Supplies"></span></button>
+    <button data-category="paper"><i class="fa-solid fa-book-open"></i><span data-ar="الدفاتر والورق" data-en="Notebooks & Paper"></span></button>
+    <button data-category="office"><i class="fa-solid fa-briefcase"></i><span data-ar="الأدوات المكتبية" data-en="Office Supplies"></span></button>
+    <button data-category="art"><i class="fa-solid fa-palette"></i><span data-ar="الفنون والرسم" data-en="Art Supplies"></span></button>
+    <button data-category="bags"><i class="fa-solid fa-bag-shopping"></i><span data-ar="الحقائب والمقالم" data-en="Bags & Cases"></span></button>
+    <a href="#stores"><i class="fa-solid fa-location-dot"></i><span data-ar="فروعنا في طرابلس" data-en="Tripoli Stores"></span></a>
+    <button class="language"><i class="fa-solid fa-globe"></i><span data-ar="English" data-en="العربية"></span></button>
+  </div>
+</aside>
+<div class="overlay" id="overlay"></div>
+
+<main id="top">
+<section class="hero-area container">
+  <div class="hero-grid">
+    <div class="slider" id="slider">
+      <article class="slide active" style="background-image:url('https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1500&q=88')">
+        <div class="hero-content"><span class="kicker"><i class="fa-solid fa-graduation-cap"></i><span data-ar="العودة إلى المدرسة" data-en="BACK TO SCHOOL"></span></span><h1 data-ar="كل ما يحتاجه الطالب في مكان واحد" data-en="Everything Students Need In One Place"></h1><p data-ar="دفاتر، أقلام، حقائب وأدوات هندسية مختارة بجودة ممتازة وأسعار مناسبة لكل المراحل." data-en="Notebooks, pens, bags and geometry tools selected for every school level at excellent prices."></p><div class="hero-price"><small data-ar="ابتداءً من" data-en="Starting from"></small> <span class="money" data-price="2.5"></span></div><button class="btn" data-category="school"><span data-ar="تسوق الآن" data-en="Shop Now"></span><i class="fa-solid fa-arrow-left"></i></button></div>
+      </article>
+      <article class="slide" style="background-image:url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=1500&q=88')">
+        <div class="hero-content"><span class="kicker"><i class="fa-solid fa-briefcase"></i><span data-ar="حلول المكاتب" data-en="OFFICE SOLUTIONS"></span></span><h1 data-ar="مكتب منظم ليوم أكثر إنتاجاً" data-en="An Organised Desk For A Productive Day"></h1><p data-ar="ورق تصوير، ملفات، دباسات وآلات حاسبة للأفراد والشركات مع عروض خاصة للكميات." data-en="Copy paper, folders, staplers and calculators for individuals and businesses with volume offers."></p><div class="hero-price"><span data-ar="خصم حتى 25%" data-en="Save up to 25%"></span></div><button class="btn" data-category="office"><span data-ar="اكتشف المجموعة" data-en="Explore Collection"></span></button></div>
+      </article>
+      <article class="slide" style="background-image:url('https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1500&q=88')">
+        <div class="hero-content"><span class="kicker"><i class="fa-solid fa-palette"></i><span data-ar="ألوان وإبداع" data-en="COLOUR & CREATIVITY"></span></span><h1 data-ar="أطلق العنان لإبداعك" data-en="Bring Your Ideas To Life"></h1><p data-ar="ألوان خشبية ومائية وأكريليك، دفاتر رسم وفرش لكل طالب وفنان." data-en="Colour pencils, watercolours, acrylics, sketchbooks and brushes for students and artists."></p><div class="hero-price"><small data-ar="ابتداءً من" data-en="Starting from"></small> <span class="money" data-price="8"></span></div><button class="btn" data-category="art"><span data-ar="تسوق أدوات الفن" data-en="Shop Art Supplies"></span></button></div>
+      </article>
+      <div class="slider-controls"><div class="dots"><button class="dot active" data-slide="0"></button><button class="dot" data-slide="1"></button><button class="dot" data-slide="2"></button></div><div class="arrows"><button class="arrow" id="prevSlide"><i class="fa-solid fa-chevron-right"></i></button><button class="arrow" id="nextSlide"><i class="fa-solid fa-chevron-left"></i></button></div></div>
+    </div>
+    <div class="hero-side">
+      <article class="offer-card" style="background-image:url('https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=85')"><div class="offer-content"><small data-ar="عرض الأسبوع" data-en="DEAL OF THE WEEK"></small><h2 data-ar="حقائب مدرسية متينة" data-en="Durable School Bags"></h2><strong data-ar="خصم 20%" data-en="20% OFF"></strong><button data-category="bags" data-ar="اكتشف" data-en="DISCOVER"></button></div></article>
+      <article class="offer-card" style="background-image:url('https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=800&q=85')"><div class="offer-content"><small data-ar="اختيارات الدراسة" data-en="STUDY ESSENTIALS"></small><h2 data-ar="دفاتر وأقلام" data-en="Notebooks & Pens"></h2><strong data-ar="من 2.5 د.ل" data-en="From 2.5 LYD"></strong><button data-category="paper" data-ar="تسوق" data-en="SHOP"></button></div></article>
+    </div>
+  </div>
+  <div class="benefits">
+    <div class="benefit"><i class="fa-solid fa-truck-fast"></i><div><strong data-ar="توصيل سريع" data-en="Fast Delivery"></strong><small data-ar="داخل طرابلس وضواحيها" data-en="Across Tripoli"></small></div></div>
+    <div class="benefit"><i class="fa-solid fa-medal"></i><div><strong data-ar="جودة مضمونة" data-en="Quality Guaranteed"></strong><small data-ar="علامات موثوقة وأصلية" data-en="Trusted genuine brands"></small></div></div>
+    <div class="benefit"><i class="fa-solid fa-money-bill-wave"></i><div><strong data-ar="الدفع عند الاستلام" data-en="Cash On Delivery"></strong><small data-ar="دفع آمن وسهل" data-en="Safe and easy payment"></small></div></div>
+    <div class="benefit"><i class="fa-solid fa-boxes-stacked"></i><div><strong data-ar="أسعار الكميات" data-en="Volume Pricing"></strong><small data-ar="للمدارس والشركات" data-en="For schools & businesses"></small></div></div>
+  </div>
+</section>
+
+<section class="container section" id="categories">
+  <div class="heading"><div><h2 data-ar="تسوق حسب القسم" data-en="Shop By Department"></h2><p data-ar="كل مستلزمات المدرسة والمكتب والفنون" data-en="Everything for school, office and creativity"></p></div></div>
+  <div class="category-grid">
+    <button class="category" data-category="school"><span class="category-icon"><i class="fa-solid fa-pen"></i></span><span data-ar="أقلام وكتابة" data-en="Pens & Writing"></span></button>
+    <button class="category" data-category="paper"><span class="category-icon"><i class="fa-solid fa-book-open"></i></span><span data-ar="دفاتر وورق" data-en="Notebooks & Paper"></span></button>
+    <button class="category" data-category="bags"><span class="category-icon"><i class="fa-solid fa-bag-shopping"></i></span><span data-ar="حقائب ومقالم" data-en="Bags & Cases"></span></button>
+    <button class="category" data-category="art"><span class="category-icon"><i class="fa-solid fa-palette"></i></span><span data-ar="ألوان وفنون" data-en="Art & Colours"></span></button>
+    <button class="category" data-category="office"><span class="category-icon"><i class="fa-solid fa-briefcase"></i></span><span data-ar="أدوات مكتبية" data-en="Office Supplies"></span></button>
+    <button class="category" data-query="geometry"><span class="category-icon"><i class="fa-solid fa-compass-drafting"></i></span><span data-ar="هندسة وقياس" data-en="Geometry & Measure"></span></button>
+    <button class="category" data-query="calculator"><span class="category-icon"><i class="fa-solid fa-calculator"></i></span><span data-ar="آلات حاسبة" data-en="Calculators"></span></button>
+    <button class="category" data-query="educational"><span class="category-icon"><i class="fa-solid fa-puzzle-piece"></i></span><span data-ar="وسائل تعليمية" data-en="Educational Aids"></span></button>
+  </div>
+</section>
+
+<section class="container product-section" id="school">
+  <div class="product-bar red"><h2 data-ar="اختيارات العودة إلى المدرسة" data-en="Back To School Selection"></h2><button class="view-all" data-category="school"><span data-ar="عرض الكل" data-en="VIEW ALL"></span> <i class="fa-solid fa-arrow-left"></i></button></div>
+  <div class="carousel"><div class="track" id="schoolProducts"></div><button class="carousel-btn prev" data-track="schoolProducts" data-dir="-1"><i class="fa-solid fa-chevron-left"></i></button><button class="carousel-btn next" data-track="schoolProducts" data-dir="1"><i class="fa-solid fa-chevron-right"></i></button></div>
+</section>
+
+<section class="container promo-grid">
+  <article class="promo red" style="background-image:url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=85')"><div class="promo-content"><h3 data-ar="بداية مدرسية أفضل" data-en="A Better School Start"></h3><p data-ar="جهّز قائمة المدرسة كاملة بأسعار مناسبة." data-en="Complete the full school list at affordable prices."></p><span class="promo-price" data-ar="وفر حتى 25%" data-en="SAVE UP TO 25%"></span><button class="btn outline" data-category="school" data-ar="تسوق الآن" data-en="Shop Now"></button></div></article>
+  <article class="promo" style="background-image:url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=900&q=85')"><div class="promo-content"><h3 data-ar="جهّز مكتبك" data-en="Upgrade Your Office"></h3><p data-ar="حلول يومية ذكية للمكاتب والشركات." data-en="Smart everyday solutions for offices and companies."></p><span class="promo-price" data-ar="أسعار خاصة للكميات" data-en="VOLUME PRICING"></span><button class="btn outline" data-category="office" data-ar="اكتشف المجموعة" data-en="Explore Range"></button></div></article>
+</section>
+
+<section class="container product-section" id="paper">
+  <div class="product-bar cyan"><h2 data-ar="الدفاتر والورق الأكثر طلباً" data-en="Popular Notebooks & Paper"></h2><button class="view-all" data-category="paper" data-ar="عرض المزيد" data-en="VIEW MORE"></button></div>
+  <div class="carousel"><div class="track" id="paperProducts"></div><button class="carousel-btn prev" data-track="paperProducts" data-dir="-1"><i class="fa-solid fa-chevron-left"></i></button><button class="carousel-btn next" data-track="paperProducts" data-dir="1"><i class="fa-solid fa-chevron-right"></i></button></div>
+</section>
+
+<section class="container sale-banner" style="background-image:url('https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1600&q=88')">
+  <div class="banner-content"><small data-ar="حلول العمل والدراسة" data-en="WORK & STUDY SOLUTIONS"></small><h2 data-ar="كل شيء في مكانه" data-en="Everything In Its Place"></h2><p data-ar="ملفات، منظمات، دباسات ولوازم أرشفة لمكتب أكثر ترتيباً." data-en="Files, organisers, staplers and filing supplies for a better workspace."></p><div class="banner-discount" data-ar="خصم حتى 20%" data-en="UP TO 20% OFF"></div><button class="btn" data-category="office" data-ar="تسوق أدوات المكتب" data-en="Shop Office Supplies"></button></div>
+</section>
+
+<section class="container product-section" id="office">
+  <div class="product-bar orange"><h2 data-ar="أدوات المكتب والتنظيم" data-en="Office & Organisation"></h2><button class="view-all" data-category="office" data-ar="عرض الكل" data-en="VIEW ALL"></button></div>
+  <div class="carousel"><div class="track" id="officeProducts"></div><button class="carousel-btn prev" data-track="officeProducts" data-dir="-1"><i class="fa-solid fa-chevron-left"></i></button><button class="carousel-btn next" data-track="officeProducts" data-dir="1"><i class="fa-solid fa-chevron-right"></i></button></div>
+</section>
+
+<section class="container sale-banner green" id="art" style="background-image:url('https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=1600&q=88')">
+  <div class="banner-content"><small data-ar="الرسم والأشغال اليدوية" data-en="ART & CRAFT"></small><h2 data-ar="ألوان تصنع الفرق" data-en="Colours That Inspire"></h2><p data-ar="كل ما يحتاجه الفنان الصغير والمحترف للرسم والتلوين والأعمال الإبداعية." data-en="Everything young and professional artists need for drawing, colouring and creative work."></p><div class="banner-discount" data-ar="ابتداءً من 6 د.ل" data-en="FROM 6 LYD"></div><button class="btn" data-category="art" data-ar="تسوق المجموعة" data-en="Shop Collection"></button></div>
+</section>
+
+<section class="container product-section">
+  <div class="product-bar green"><h2 data-ar="أدوات الرسم والفنون" data-en="Art & Creative Supplies"></h2><button class="view-all" data-category="art" data-ar="عرض الكل" data-en="VIEW ALL"></button></div>
+  <div class="carousel"><div class="track" id="artProducts"></div><button class="carousel-btn prev" data-track="artProducts" data-dir="-1"><i class="fa-solid fa-chevron-left"></i></button><button class="carousel-btn next" data-track="artProducts" data-dir="1"><i class="fa-solid fa-chevron-right"></i></button></div>
+</section>
+
+<section class="container product-section" id="bags">
+  <div class="product-bar purple"><h2 data-ar="الحقائب والمقالم" data-en="School Bags & Pencil Cases"></h2><button class="view-all" data-category="bags" data-ar="عرض المزيد" data-en="VIEW MORE"></button></div>
+  <div class="carousel"><div class="track" id="bagProducts"></div><button class="carousel-btn prev" data-track="bagProducts" data-dir="-1"><i class="fa-solid fa-chevron-left"></i></button><button class="carousel-btn next" data-track="bagProducts" data-dir="1"><i class="fa-solid fa-chevron-right"></i></button></div>
+</section>
+
+<section class="container product-section" id="deals">
+  <div class="heading"><div><h2 data-ar="أفضل العروض" data-en="Best Deals"></h2><p data-ar="أسعار مختارة لفترة محدودة" data-en="Selected prices for a limited time"></p></div></div>
+  <div class="carousel"><div class="track" id="dealProducts"></div><button class="carousel-btn prev" data-track="dealProducts" data-dir="-1"><i class="fa-solid fa-chevron-left"></i></button><button class="carousel-btn next" data-track="dealProducts" data-dir="1"><i class="fa-solid fa-chevron-right"></i></button></div>
+</section>
+
+<section class="container brands">
+  <div class="heading"><div><h2 data-ar="أفضل العلامات التجارية" data-en="Top Brands"></h2></div></div>
+  <div class="brand-row"><button class="brand-btn" data-query="FABER">FABER-CASTELL</button><button class="brand-btn" data-query="BIC">BIC</button><button class="brand-btn" data-query="STABILO">STABILO</button><button class="brand-btn" data-query="CASIO">CASIO</button><button class="brand-btn" data-query="MAPED">MAPED</button><button class="brand-btn" data-query="PILOT">PILOT</button><button class="brand-btn" data-query="DOUBLE A">DOUBLE A</button><button class="brand-btn" data-query="JANSPORT">JANSPORT</button></div>
+</section>
+
+<section class="container service" id="business">
+  <div class="service-main"><i class="fa-solid fa-school"></i><div><h2 data-ar="توريد المدارس والشركات" data-en="School & Business Supply"></h2><p data-ar="قوائم مدرسية، قرطاسية مكتبية وأسعار خاصة للطلبات الكبيرة." data-en="School lists, office stationery and special pricing for bulk orders."></p></div></div>
+  <div class="service-contact"><div><h2 data-ar="تحتاج عرض سعر؟" data-en="Need A Quote?"></h2><p data-ar="أرسل قائمتك وسنجهز لك أفضل عرض." data-en="Send your list and we will prepare our best offer."></p></div><button class="btn" id="quoteBtn"><i class="fa-brands fa-whatsapp"></i><span data-ar="اطلب عرضاً" data-en="Request Quote"></span></button></div>
+</section>
+
+<section class="container stores" id="stores">
+  <div class="heading"><div><h2 data-ar="فروعنا في طرابلس" data-en="Our Tripoli Stores"></h2><p data-ar="تسوق أو استلم طلبك من أقرب فرع" data-en="Shop or collect your order from the nearest branch"></p></div></div>
+  <div class="store-grid">
+    <article class="store"><div class="store-image"><img src="https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=240&q=80" alt="Al Manhaj store"></div><h3 data-ar="المنهج قرقارش" data-en="Al Manhaj Gargaresh"></h3><p><i class="fa-solid fa-phone"></i>+218 91 234 5678</p><p><i class="fa-solid fa-location-dot"></i><span data-ar="طريق قرقارش، طرابلس" data-en="Gargaresh Road, Tripoli"></span></p><p><i class="fa-regular fa-clock"></i><span data-ar="السبت - الخميس: 09:00 - 20:00" data-en="Sat - Thu: 09:00 - 20:00"></span></p><button class="map-btn" data-map="Gargaresh Tripoli Libya" data-ar="فتح الخريطة" data-en="OPEN MAP"></button></article>
+    <article class="store"><div class="store-image"><img src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=240&q=80" alt="Al Manhaj store"></div><h3 data-ar="المنهج جنزور" data-en="Al Manhaj Janzour"></h3><p><i class="fa-solid fa-phone"></i>+218 92 345 6789</p><p><i class="fa-solid fa-location-dot"></i><span data-ar="الطريق الساحلي، جنزور" data-en="Coastal Road, Janzour"></span></p><p><i class="fa-regular fa-clock"></i><span data-ar="السبت - الخميس: 09:00 - 20:00" data-en="Sat - Thu: 09:00 - 20:00"></span></p><button class="map-btn" data-map="Janzour Tripoli Libya" data-ar="فتح الخريطة" data-en="OPEN MAP"></button></article>
+    <article class="store"><div class="store-image"><img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=240&q=80" alt="Al Manhaj store"></div><h3 data-ar="المنهج سوق الجمعة" data-en="Al Manhaj Souq Al Jumaa"></h3><p><i class="fa-solid fa-phone"></i>+218 91 456 7812</p><p><i class="fa-solid fa-location-dot"></i><span data-ar="سوق الجمعة، طرابلس" data-en="Souq Al Jumaa, Tripoli"></span></p><p><i class="fa-regular fa-clock"></i><span data-ar="السبت - الخميس: 08:30 - 19:30" data-en="Sat - Thu: 08:30 - 19:30"></span></p><button class="map-btn" data-map="Souq Al Jumaa Tripoli Libya" data-ar="فتح الخريطة" data-en="OPEN MAP"></button></article>
+  </div>
+</section>
+
+<section class="container about" id="about">
+  <p data-ar="شركة المنهج للقرطاسية هي وجهتك المتخصصة لشراء القرطاسية واللوازم المدرسية والمكتبية وأدوات الرسم في طرابلس. نوفر تشكيلة موثوقة من العلامات العالمية، وأسعاراً تنافسية، وتوصيلاً سريعاً وخدمات توريد للمدارس والشركات." data-en="Al Manhaj Stationery is your specialist destination for stationery, school and office supplies, and art materials in Tripoli. We offer trusted international brands, competitive pricing, fast delivery and supply services for schools and businesses."></p>
+  <p><strong data-ar="مهمتنا: توفير كل ما تحتاجه للتعلم والعمل والإبداع، بجودة وخدمة يمكنك الاعتماد عليهما." data-en="Our mission: everything you need to learn, work and create, backed by quality and service you can trust."></strong></p>
+</section>
+</main>
+
+<div class="social"><div class="container social-row"><a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a><a href="https://wa.me/218912345678" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></div></div>
+
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-col"><h3 data-ar="تسوق" data-en="SHOP"></h3><a href="#school" data-ar="اللوازم المدرسية" data-en="School supplies"></a><a href="#paper" data-ar="الدفاتر والورق" data-en="Notebooks & paper"></a><a href="#office" data-ar="الأدوات المكتبية" data-en="Office supplies"></a><a href="#art" data-ar="الرسم والفنون" data-en="Art supplies"></a><a href="#bags" data-ar="الحقائب والمقالم" data-en="Bags & cases"></a></div>
+    <div class="footer-col"><h3 data-ar="خدمة العملاء" data-en="CUSTOMER SERVICE"></h3><a href="#stores" data-ar="فروعنا" data-en="Our stores"></a><a href="#" data-ar="التوصيل والاستلام" data-en="Delivery & collection"></a><a href="#" data-ar="الاستبدال والاسترجاع" data-en="Returns & exchanges"></a><a href="#" data-ar="الأسئلة الشائعة" data-en="FAQs"></a><a href="#business" data-ar="حسابات الشركات" data-en="Business accounts"></a></div>
+    <div class="footer-col"><h3 data-ar="تواصل معنا" data-en="CONTACT US"></h3><p><i class="fa-solid fa-phone"></i>+218 91 234 5678</p><p><i class="fa-solid fa-envelope"></i>sales@almanhaj.ly</p><p><i class="fa-solid fa-location-dot"></i><span data-ar="طرابلس، ليبيا" data-en="Tripoli, Libya"></span></p><p><i class="fa-regular fa-clock"></i><span data-ar="السبت - الخميس، 09:00 - 20:00" data-en="Sat - Thu, 09:00 - 20:00"></span></p></div>
+    <div class="footer-col"><h3 data-ar="اشترك في عروضنا" data-en="JOIN OUR NEWSLETTER"></h3><p data-ar="احصل على أحدث العروض، المنتجات الجديدة وقوائم العودة إلى المدرسة." data-en="Get our latest offers, new products and back-to-school lists."></p><form class="newsletter" id="newsletter"><input type="email" required data-ph-ar="بريدك الإلكتروني" data-ph-en="Your email address"><button data-ar="اشتراك" data-en="SUBSCRIBE"></button></form><div class="payments"><span>CASH</span><span>VISA</span><span>MASTERCARD</span><span>LYPAY</span></div></div>
+  </div>
+  <div class="footer-benefits">
+    <div class="footer-benefit"><i class="fa-solid fa-truck"></i><span data-ar="توصيل سريع" data-en="Fast delivery"></span></div>
+    <div class="footer-benefit"><i class="fa-solid fa-store"></i><span data-ar="استلام من الفرع" data-en="Store collection"></span></div>
+    <div class="footer-benefit"><i class="fa-solid fa-medal"></i><span data-ar="جودة مضمونة" data-en="Quality guaranteed"></span></div>
+    <div class="footer-benefit"><i class="fa-solid fa-boxes-stacked"></i><span data-ar="طلبات الكميات" data-en="Bulk orders"></span></div>
+    <div class="footer-benefit"><i class="fa-solid fa-headset"></i><span data-ar="خدمة العملاء" data-en="Customer care"></span></div>
+  </div>
+  <div class="copyright">© 2025 <span data-ar="شركة المنهج للقرطاسية. جميع الحقوق محفوظة." data-en="Al Manhaj Stationery. All rights reserved."></span></div>
+</footer>
+
+<aside class="cart" id="cart">
+  <div class="cart-head"><h2 data-ar="سلة التسوق" data-en="Shopping Cart"></h2><button class="close" id="closeCart"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer"><div class="total"><span data-ar="الإجمالي" data-en="Total"></span><strong id="cartTotal">0</strong></div><button class="checkout" id="checkoutBtn" data-ar="إتمام الطلب" data-en="CHECKOUT"></button></div>
+</aside>
+
+<div class="modal-layer" id="modalLayer">
+  <div class="modal"><div class="modal-head"><h2 id="modalTitle"></h2><button class="close" id="closeModal"><i class="fa-solid fa-xmark"></i></button></div><div class="modal-body" id="modalBody"></div></div>
+</div>
+<div class="toasts" id="toasts"></div>
+<div class="floating"><a class="float" href="https://wa.me/218912345678" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a><button class="float back" id="backTop"><i class="fa-solid fa-chevron-up"></i></button></div>
+
+<script>
+const products=[
+{id:1,cat:"school",brand:"BIC",ar:"طقم أقلام جاف كريستال 10 قطع",en:"Cristal Ballpoint Pens, 10 Pack",price:12,old:15,img:"https://images.unsplash.com/photo-1585336261022-680e295ce3fe?auto=format&fit=crop&w=600&q=80",keys:"قلم pen writing"},
+{id:2,cat:"school",brand:"FABER-CASTELL",ar:"أقلام رصاص مدرسية HB - 12 قطعة",en:"HB School Pencils, 12 Pack",price:10,old:13,img:"https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?auto=format&fit=crop&w=600&q=80",keys:"pencil قلم رصاص"},
+{id:3,cat:"school",brand:"STABILO",ar:"طقم أقلام تحديد بألوان باستيل",en:"Pastel Highlighter Set",price:18,old:22,img:"https://images.unsplash.com/photo-1580569214296-5cf2bffc5ccd?auto=format&fit=crop&w=600&q=80",keys:"marker highlighter تحديد"},
+{id:4,cat:"school",brand:"MAPED",ar:"طقم هندسي متكامل 8 قطع",en:"Complete Geometry Set, 8 Pieces",price:16,old:20,img:"https://images.unsplash.com/photo-1574607383476-f517f260d30b?auto=format&fit=crop&w=600&q=80",keys:"geometry هندسة ruler compass"},
+{id:5,cat:"school",brand:"PILOT",ar:"أقلام حبر جل قابلة للمسح",en:"Erasable Gel Pens, 3 Pack",price:24,old:29,img:"https://images.unsplash.com/photo-1568205612837-017257d2310a?auto=format&fit=crop&w=600&q=80",keys:"pen حبر correction"},
+{id:6,cat:"school",brand:"MAPED",ar:"طقم ممحاة وبراية مدرسية",en:"School Eraser & Sharpener Set",price:6,old:8,img:"https://images.unsplash.com/photo-1509223197845-458d87318791?auto=format&fit=crop&w=600&q=80",keys:"correction ممحاة sharpener"},
+{id:7,cat:"paper",brand:"AL MANHAJ",ar:"دفتر مدرسي مسطر 100 ورقة",en:"Ruled School Notebook, 100 Sheets",price:5.5,old:7,img:"https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=600&q=80",keys:"notebook دفتر"},
+{id:8,cat:"paper",brand:"MOLESKINE",ar:"دفتر ملاحظات فاخر بغلاف صلب",en:"Premium Hardcover Notebook",price:38,old:45,img:"https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=600&q=80",keys:"notebook دفتر ملاحظات"},
+{id:9,cat:"paper",brand:"DOUBLE A",ar:"رزمة ورق تصوير A4 - 500 ورقة",en:"A4 Copy Paper, 500 Sheets",price:32,old:36,img:"https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&q=80",keys:"copy paper ورق تصوير"},
+{id:10,cat:"paper",brand:"POST-IT",ar:"ملاحظات لاصقة متعددة الألوان",en:"Assorted Colour Sticky Notes",price:14,old:18,img:"https://images.unsplash.com/photo-1587467512961-120760940315?auto=format&fit=crop&w=600&q=80",keys:"sticky notes لاصقة"},
+{id:11,cat:"paper",brand:"OXFORD",ar:"دفتر جامعي حلزوني مقسم",en:"Sectioned Spiral College Notebook",price:19,old:23,img:"https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80",keys:"notebook college دفتر"},
+{id:12,cat:"paper",brand:"AL MANHAJ",ar:"كراسة رسم بيضاء A4",en:"A4 White Sketch Pad",price:11,old:14,img:"https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&w=600&q=80",keys:"sketch paper رسم"},
+{id:13,cat:"office",brand:"DELI",ar:"دباسة مكتبية معدنية مع دبابيس",en:"Metal Office Stapler With Staples",price:26,old:31,img:"https://images.unsplash.com/photo-1598618443855-232ee0f819f6?auto=format&fit=crop&w=600&q=80",keys:"stapler دباسة office"},
+{id:14,cat:"office",brand:"CASIO",ar:"آلة حاسبة مكتبية 12 خانة",en:"12-Digit Desktop Calculator",price:42,old:49,img:"https://images.unsplash.com/photo-1564466809058-bf4114d55352?auto=format&fit=crop&w=600&q=80",keys:"calculator حاسبة"},
+{id:15,cat:"office",brand:"LEITZ",ar:"ملفات أرشيف A4 - طقم 5 قطع",en:"A4 Archive Files, 5 Pack",price:28,old:34,img:"https://images.unsplash.com/photo-1457694587812-e8bf29a43845?auto=format&fit=crop&w=600&q=80",keys:"folder file ملفات"},
+{id:16,cat:"office",brand:"DELI",ar:"منظم مكتب متعدد الأقسام",en:"Multi-Section Desk Organiser",price:35,old:42,img:"https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=600&q=80",keys:"organizer office مكتب"},
+{id:17,cat:"office",brand:"HP",ar:"خرطوشة حبر طابعة سوداء أصلية",en:"Original Black Printer Cartridge",price:95,old:110,img:"https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=600&q=80",keys:"printer ink حبر طابعة"},
+{id:18,cat:"office",brand:"3M",ar:"شريط لاصق مع حامل مكتبي",en:"Desktop Tape Dispenser & Tape",price:17,old:21,img:"https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=600&q=80",keys:"tape office لاصق"},
+{id:19,cat:"art",brand:"FABER-CASTELL",ar:"ألوان خشبية كلاسيكية 24 لون",en:"Classic Colour Pencils, 24 Colours",price:29,old:36,img:"https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80",keys:"art colors ألوان"},
+{id:20,cat:"art",brand:"GIOTTO",ar:"ألوان مائية مدرسية 12 لون",en:"School Watercolours, 12 Colours",price:22,old:27,img:"https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=600&q=80",keys:"watercolor art ألوان مائية"},
+{id:21,cat:"art",brand:"REEVES",ar:"طقم ألوان أكريليك 12 أنبوب",en:"Acrylic Paint Set, 12 Tubes",price:45,old:55,img:"https://images.unsplash.com/photo-1541961017774-22349e4a1262?auto=format&fit=crop&w=600&q=80",keys:"acrylic art أكريليك"},
+{id:22,cat:"art",brand:"DALER-ROWNEY",ar:"مجموعة فرش رسم 10 قطع",en:"Artist Brush Set, 10 Pieces",price:24,old:30,img:"https://images.unsplash.com/photo-1510832842230-87253f48d74f?auto=format&fit=crop&w=600&q=80",keys:"brush art فرش"},
+{id:23,cat:"art",brand:"CRAYOLA",ar:"أقلام شمعية للأطفال 24 لون",en:"Kids Wax Crayons, 24 Colours",price:19,old:23,img:"https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=600&q=80",keys:"crayon children ألوان"},
+{id:24,cat:"art",brand:"MAPED",ar:"طقم أشغال يدوية للأطفال",en:"Creative Craft Kit For Kids",price:39,old:48,img:"https://images.unsplash.com/photo-1598880940080-ff9a29891b85?auto=format&fit=crop&w=600&q=80",keys:"craft educational أطفال"},
+{id:25,cat:"bags",brand:"JANSPORT",ar:"حقيبة مدرسية كلاسيكية مبطنة",en:"Classic Padded School Backpack",price:115,old:139,img:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80",keys:"bag backpack حقيبة"},
+{id:26,cat:"bags",brand:"SKYBAGS",ar:"حقيبة مدرسية بعجلات للأطفال",en:"Kids Trolley School Bag",price:145,old:175,img:"https://images.unsplash.com/photo-1581605405669-fcdf81165afa?auto=format&fit=crop&w=600&q=80",keys:"bag trolley حقيبة"},
+{id:27,cat:"bags",brand:"MAPED",ar:"مقلمة مدرسية مزدوجة",en:"Double Compartment Pencil Case",price:22,old:28,img:"https://images.unsplash.com/photo-1606248897732-2c5ffe759c04?auto=format&fit=crop&w=600&q=80",keys:"case مقلمة"},
+{id:28,cat:"bags",brand:"MILAN",ar:"مقلمة مجهزة بـ 30 قطعة",en:"Filled Pencil Case, 30 Pieces",price:58,old:69,img:"https://images.unsplash.com/photo-1560785496-3c9d27877182?auto=format&fit=crop&w=600&q=80",keys:"case مقلمة school"},
+{id:29,cat:"bags",brand:"LOCK&LOCK",ar:"حافظة طعام مدرسية محكمة",en:"Sealed School Lunch Box",price:36,old:43,img:"https://images.unsplash.com/photo-1602532305019-3dbbd482dae9?auto=format&fit=crop&w=600&q=80",keys:"lunch box طعام"},
+{id:30,cat:"bags",brand:"CONTIGO",ar:"قارورة مياه مدرسية 500 مل",en:"School Water Bottle, 500ml",price:39,old:47,img:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80",keys:"bottle water قارورة"}
+];
+let lang=localStorage.getItem("manhajLang")||"ar",cart=JSON.parse(localStorage.getItem("manhajCart")||"[]"),wishlist=new Set(JSON.parse(localStorage.getItem("manhajWish")||"[]")),slide=0,timer;
+
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+function money(n){return `${Number(n).toLocaleString(lang==="ar"?"ar-LY":"en-US",{maximumFractionDigits:2})} ${lang==="ar"?"د.ل":"LYD"}`}
+function applyLanguage(){
+ document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+ $$("[data-ar]").forEach(el=>{let v=el.dataset[lang];if(v!==undefined)el.textContent=v});
+ $$("[data-ph-ar]").forEach(el=>el.placeholder=el.dataset[lang==="ar"?"phAr":"phEn"]);
+ $$(".money").forEach(el=>el.textContent=money(el.dataset.price));
+ $$(".language-label").forEach(el=>el.textContent=lang==="ar"?"English":"العربية");
+ renderAll();renderCart();
+}
+function card(p){
+ let off=Math.round((1-p.price/p.old)*100);
+ return `<article class="product">
+ <span class="discount">-${off}%</span><span class="stock">${lang==="ar"?"متوفر":"IN STOCK"}</span>
+ <button class="fav ${wishlist.has(p.id)?"active":""}" data-fav="${p.id}"><i class="${wishlist.has(p.id)?"fa-solid":"fa-regular"} fa-heart"></i></button>
+ <div class="product-image"><img loading="lazy" src="${p.img}" alt="${lang==="ar"?p.ar:p.en}"><button class="quick" data-quick="${p.id}">${lang==="ar"?"عرض سريع":"QUICK VIEW"}</button></div>
+ <div class="product-info"><span class="brand">${p.brand}</span><div class="product-title">${lang==="ar"?p.ar:p.en}</div>
+ <div class="rating">★★★★★ <span>(4.8)</span></div><div class="price-row"><span class="price">${money(p.price)}</span><span class="old">${money(p.old)}</span></div>
+ <div class="card-actions"><button class="add" data-add="${p.id}"><i class="fa-solid fa-cart-plus"></i> ${lang==="ar"?"أضف للسلة":"ADD TO CART"}</button><button class="compare"><i class="fa-solid fa-code-compare"></i></button></div></div></article>`;
+}
+function renderAll(){
+ const sets={schoolProducts:"school",paperProducts:"paper",officeProducts:"office",artProducts:"art",bagProducts:"bags"};
+ Object.entries(sets).forEach(([id,cat])=>$("#"+id).innerHTML=products.filter(p=>p.cat===cat).map(card).join(""));
+ $("#dealProducts").innerHTML=products.filter(p=>p.old-p.price>=5).slice(0,10).map(card).join("");
+}
+function save(){localStorage.setItem("manhajCart",JSON.stringify(cart));localStorage.setItem("manhajWish",JSON.stringify([...wishlist]))}
+function addCart(id){
+ let item=cart.find(x=>x.id===id);if(item)item.qty++;else cart.push({id,qty:1});save();renderCart();toast(lang==="ar"?"تمت إضافة المنتج إلى السلة":"Product added to cart");
+}
+function renderCart(){
+ $("#cartCount").textContent=cart.reduce((a,b)=>a+b.qty,0);$("#wishCount").textContent=wishlist.size;
+ if(!cart.length)$("#cartItems").innerHTML=`<div class="empty"><div><i class="fa-solid fa-cart-shopping"></i><strong>${lang==="ar"?"سلتك فارغة":"Your cart is empty"}</strong><p>${lang==="ar"?"ابدأ بإضافة لوازمك المفضلة":"Start adding your favourite supplies"}</p></div></div>`;
+ else $("#cartItems").innerHTML=cart.map(x=>{let p=products.find(y=>y.id===x.id);return `<div class="cart-item"><img src="${p.img}" alt=""><div><h4>${lang==="ar"?p.ar:p.en}</h4><strong>${money(p.price)}</strong><div class="qty"><button data-qty="${p.id}" data-change="-1">−</button><span>${x.qty}</span><button data-qty="${p.id}" data-change="1">+</button></div></div><button class="remove" data-remove="${p.id}"><i class="fa-solid fa-trash"></i></button></div>`}).join("");
+ let total=cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0);$("#cartTotal").textContent=money(total);
+}
+function toggleCart(open=true){$("#cart").classList.toggle("open",open);$("#overlay").classList.toggle("active",open)}
+function toast(msg){let t=document.createElement("div");t.className="toast";t.innerHTML=`<i class="fa-solid fa-circle-check"></i> ${msg}`;$("#toasts").append(t);setTimeout(()=>t.remove(),2800)}
+function showModal(title,body){$("#modalTitle").textContent=title;$("#modalBody").innerHTML=body;$("#modalLayer").classList.add("active")}
+function quickView(id){let p=products.find(x=>x.id===id);showModal(lang==="ar"?"تفاصيل المنتج":"Product Details",`<div class="quick-grid"><div class="quick-image"><img src="${p.img}" alt=""></div><div class="quick-details"><span class="brand">${p.brand}</span><h3>${lang==="ar"?p.ar:p.en}</h3><div class="rating">★★★★★ <span>(4.8)</span></div><span class="price">${money(p.price)}</span><p>${lang==="ar"?"منتج أصلي عالي الجودة، مناسب للاستخدام المدرسي والمكتبي اليومي. متوفر الآن مع خدمة التوصيل داخل طرابلس.":"A genuine, high-quality product ideal for everyday school and office use. Available now with delivery across Tripoli."}</p><button class="btn" data-add="${p.id}"><i class="fa-solid fa-cart-plus"></i>${lang==="ar"?"أضف للسلة":"Add To Cart"}</button></div></div>`)}
+function search(q="",cat=""){
+ q=q.trim().toLowerCase();return products.filter(p=>(!cat||p.cat===cat)&&(!q||`${p.ar} ${p.en} ${p.brand} ${p.keys}`.toLowerCase().includes(q)));
+}
+function showResults(q,cat=""){
+ let found=search(q,cat);showModal(lang==="ar"?"نتائج البحث":"Search Results",`<div class="results">${found.length?found.map(p=>`<article class="result"><img src="${p.img}" alt=""><div><h4>${lang==="ar"?p.ar:p.en}</h4><strong>${money(p.price)}</strong><button data-add="${p.id}">${lang==="ar"?"أضف للسلة":"ADD TO CART"}</button></div></article>`).join(""):`<div class="empty"><div><i class="fa-solid fa-magnifying-glass"></i>${lang==="ar"?"لا توجد نتائج مطابقة":"No matching results"}</div></div>`}</div>`)}
+function goSlide(n){slide=(n+3)%3;$$(".slide").forEach((x,i)=>x.classList.toggle("active",i===slide));$$(".dot").forEach((x,i)=>x.classList.toggle("active",i===slide))}
+function restartSlider(){clearInterval(timer);timer=setInterval(()=>goSlide(slide+1),6000)}
+function openCategory(cat){showResults("",cat);$("#drawer").classList.remove("open");$("#overlay").classList.remove("active")}
+
+document.addEventListener("click",e=>{
+ let b=e.target.closest("button,a");if(!b)return;
+ if(b.matches("[data-add]"))addCart(+b.dataset.add);
+ if(b.matches("[data-quick]"))quickView(+b.dataset.quick);
+ if(b.matches("[data-fav]")){let id=+b.dataset.fav;wishlist.has(id)?wishlist.delete(id):wishlist.add(id);save();renderAll();renderCart();toast(lang==="ar"?"تم تحديث المفضلة":"Wishlist updated")}
+ if(b.matches("[data-category]"))openCategory(b.dataset.category);
+ if(b.matches("[data-query]"))showResults(b.dataset.query);
+ if(b.matches("[data-track]"))$("#"+b.dataset.track).scrollBy({left:+b.dataset.dir*450,behavior:"smooth"});
+ if(b.matches("[data-remove]")){cart=cart.filter(x=>x.id!==+b.dataset.remove);save();renderCart()}
+ if(b.matches("[data-qty]")){let x=cart.find(i=>i.id===+b.dataset.qty);x.qty+=+b.dataset.change;if(x.qty<1)cart=cart.filter(i=>i.id!==x.id);save();renderCart()}
+ if(b.matches(".compare")){b.classList.toggle("active");toast(lang==="ar"?"تم تحديث قائمة المقارنة":"Comparison list updated")}
+ if(b.matches("[data-map]"))window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(b.dataset.map),"_blank");
+});
+$$(".language").forEach(b=>b.onclick=()=>{lang=lang==="ar"?"en":"ar";localStorage.setItem("manhajLang",lang);applyLanguage()});
+$("#departments").onclick=()=>$("#mega").classList.toggle("active");
+$("#menuBtn").onclick=()=>{$("#drawer").classList.add("open");$("#overlay").classList.add("active")};
+$("#closeDrawer").onclick=()=>{$("#drawer").classList.remove("open");$("#overlay").classList.remove("active")};
+$("#cartBtn").onclick=()=>toggleCart(true);$("#closeCart").onclick=()=>toggleCart(false);
+$("#overlay").onclick=()=>{toggleCart(false);$("#drawer").classList.remove("open");$("#mega").classList.remove("active")};
+$("#closeModal").onclick=()=>$("#modalLayer").classList.remove("active");
+$("#modalLayer").onclick=e=>{if(e.target===$("#modalLayer"))$("#modalLayer").classList.remove("active")};
+$("#nextSlide").onclick=()=>{goSlide(slide+1);restartSlider()};$("#prevSlide").onclick=()=>{goSlide(slide-1);restartSlider()};
+$$(".dot").forEach(d=>d.onclick=()=>{goSlide(+d.dataset.slide);restartSlider()});
+$("#searchInput").addEventListener("input",e=>{
+ let q=e.target.value,found=search(q,$("#searchCategory").value).slice(0,5);
+ $("#suggestions").classList.toggle("active",q.length>0);
+ $("#suggestions").innerHTML=found.map(p=>`<button class="suggestion" data-quick="${p.id}"><img src="${p.img}"><span>${lang==="ar"?p.ar:p.en}</span><b>${money(p.price)}</b></button>`).join("");
+});
+$("#searchForm").onsubmit=e=>{e.preventDefault();$("#suggestions").classList.remove("active");showResults($("#searchInput").value,$("#searchCategory").value)};
+$("#accountBtn").onclick=()=>showModal(lang==="ar"?"تسجيل الدخول":"Account Login",`<form class="form-grid" onsubmit="event.preventDefault();toast('${lang==="ar"?"تم تسجيل الدخول بنجاح":"Signed in successfully"}');document.querySelector('#modalLayer').classList.remove('active')"><div class="field full"><label>${lang==="ar"?"البريد الإلكتروني أو رقم الهاتف":"Email or phone number"}</label><input required></div><div class="field full"><label>${lang==="ar"?"كلمة المرور":"Password"}</label><input type="password" required></div><div class="field full"><button class="submit">${lang==="ar"?"تسجيل الدخول":"SIGN IN"}</button></div></form>`);
+$("#wishBtn").onclick=()=>showResults([...wishlist].map(id=>products.find(p=>p.id===id)?.brand).join("|"));
+$("#trackBtn").onclick=()=>showModal(lang==="ar"?"تتبع طلبك":"Track Your Order",`<form class="form-grid" onsubmit="event.preventDefault();toast('${lang==="ar"?"جاري البحث عن الطلب":"Searching for your order"}')"><div class="field full"><label>${lang==="ar"?"رقم الطلب":"Order number"}</label><input required placeholder="AM-0000"></div><div class="field full"><button class="submit">${lang==="ar"?"تتبع الطلب":"TRACK ORDER"}</button></div></form>`);
+$("#quoteBtn").onclick=()=>window.open("https://wa.me/218912345678?text="+encodeURIComponent(lang==="ar"?"مرحباً، أريد طلب عرض سعر للقرطاسية":"Hello, I would like a stationery quotation"),"_blank");
+$("#checkoutBtn").onclick=()=>{
+ if(!cart.length)return toast(lang==="ar"?"السلة فارغة":"Your cart is empty");
+ toggleCart(false);showModal(lang==="ar"?"إتمام الطلب":"Checkout",`<form class="form-grid" id="checkoutForm"><div class="field"><label>${lang==="ar"?"الاسم الكامل":"Full name"}</label><input required></div><div class="field"><label>${lang==="ar"?"رقم الهاتف":"Phone number"}</label><input required></div><div class="field full"><label>${lang==="ar"?"عنوان التوصيل":"Delivery address"}</label><input required></div><div class="field"><label>${lang==="ar"?"المدينة":"City"}</label><input value="${lang==="ar"?"طرابلس":"Tripoli"}"></div><div class="field"><label>${lang==="ar"?"طريقة الدفع":"Payment method"}</label><select><option>${lang==="ar"?"الدفع عند الاستلام":"Cash on delivery"}</option><option>${lang==="ar"?"بطاقة مصرفية":"Bank card"}</option></select></div><div class="field full"><button class="submit">${lang==="ar"?"تأكيد الطلب":"CONFIRM ORDER"}</button></div></form>`);
+ setTimeout(()=>{$("#checkoutForm").onsubmit=e=>{e.preventDefault();cart=[];save();renderCart();$("#modalBody").innerHTML=`<div class="empty"><div><i class="fa-solid fa-circle-check" style="color:#22a85a"></i><h2>${lang==="ar"?"تم استلام طلبك بنجاح":"Order received successfully"}</h2><p>${lang==="ar"?"سنتواصل معك قريباً لتأكيد التوصيل.":"We will contact you shortly to confirm delivery."}</p></div></div>`}},0);
+};
+$("#newsletter").onsubmit=e=>{e.preventDefault();toast(lang==="ar"?"شكراً لاشتراكك في عروضنا":"Thank you for subscribing");e.target.reset()};
+window.addEventListener("scroll",()=>$("#backTop").classList.toggle("show",scrollY>600));
+$("#backTop").onclick=()=>scrollTo({top:0,behavior:"smooth"});
+setInterval(()=>{let now=new Date(),end=new Date();end.setHours(23,59,59);let s=Math.max(0,Math.floor((end-now)/1000)),h=String(Math.floor(s/3600)).padStart(2,"0"),m=String(Math.floor(s%3600/60)).padStart(2,"0"),sec=String(s%60).padStart(2,"0");$("#countdown").innerHTML=`<b>${h}</b><b>${m}</b><b>${sec}</b>`},1000);
+applyLanguage();restartSlider();
+</script>
+</body>
+</html>
