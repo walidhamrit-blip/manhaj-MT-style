@@ -1,0 +1,31 @@
+name: Contrôle production — rubans de marques
+
+# Contrôle post-déploiement (temporaire, le temps de la vérification) :
+# Chrome du runner mesure les rubans sur le site en production.
+
+on:
+  push:
+    branches: [arena/10bc2dd3-manhaj-mt-style]
+      # (le fichier sera retiré après la vérification)
+  workflow_dispatch:
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Installer puppeteer-core
+        run: npm install puppeteer-core@23 --no-save --no-package-lock
+
+      - name: Navigateurs disponibles
+        run: ls -l /usr/bin/google-chrome* /usr/bin/chromium* 2>/dev/null || true
+
+      - name: Vérifier le site en production
+        env:
+          SITE_URL: https://manhaj-mt-style.vercel.app/
+        run: node .github/verify-prod.mjs
