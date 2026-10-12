@@ -348,7 +348,8 @@ async function install(db: DbClient): Promise<void> {
 /* ────────────────────────────────────────────────────────────────────
  *  Rubans de marques (accueil)
  *
- *  Migration CIBLÉE : elle ne touche qu'aux marques et aux deux sections
+ *  Migration CIBLÉE : elle ajoute les colonnes manquantes (instructions de
+ *  schéma idempotentes), puis ne touche qu'aux marques et aux deux sections
  *  « brands-it » / « brands-stationery ». Elle ne réinstalle PAS le catalogue
  *  (produits, bannières, magasins, avantages, navigation), contrairement à
  *  un bump de SCHEMA_VERSION qui efface et reseme toutes ces tables.
@@ -358,7 +359,14 @@ async function install(db: DbClient): Promise<void> {
 export const BRAND_RIBBONS_VERSION = '2';
 
 async function seedBrands(db: DbClient): Promise<void> {
-  await db.exec('delete from brands');
+  /* Insérer d'abord, supprimer ensuite les anciennes lignes seulement : sans
+     transaction disponible (client HTTP Neon), une interruption ne laisse
+     jamais la liste de marques vide. */
+  const [maxRow] = await db.query<{ max_id: number | string | null }>(
+    'select coalesce(max(id), 0) as max_id from brands',
+  );
+  const previousMaxId = Number(maxRow?.max_id ?? 0);
+
   for (const b of SEED_BRANDS) {
     const logoUrl = b.logoFile ? `/brands/${b.logoFile}.svg` : '';
     await db.query(
@@ -366,6 +374,8 @@ async function seedBrands(db: DbClient): Promise<void> {
       [b.name, b.group || '', b.searchQuery ?? b.name, logoUrl, b.sort],
     );
   }
+  await db.query('delete from brands where id <= $1', [previousMaxId]);
+
   for (const s of SEED_SECTIONS.filter((x) => x.type === 'brands')) {
     await db.query(
       `insert into sections
@@ -403,6 +413,13 @@ async function migrateBrandRibbons(db: DbClient): Promise<void> {
   if (current.includes(BRAND_RIBBONS_VERSION)) return;
 
   console.log('[manhaj] mise à jour des rubans de marques…');
+  /* Les colonnes ajoutées après la première installation (brands.group,
+     sections.brand_group) n'existent pas encore sur une base ancienne. Les
+     instructions du schéma sont idempotentes (create/add ... if not exists),
+     donc on les rejoue ici avant de toucher aux marques. */
+  for (const statement of SCHEMA_STATEMENTS) {
+    await db.exec(statement);
+  }
   await seedBrands(db);
   await setBrandRibbonsVersion(db);
   console.log('[manhaj] rubans de marques à jour.');
