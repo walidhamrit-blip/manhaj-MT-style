@@ -91,6 +91,7 @@ export type Benefit = {
 export type Brand = {
   id: number;
   name: string;
+  group: 'it' | 'stationery' | '';
   searchQuery: string;
   logoUrl: string;
   sort: number;
@@ -119,6 +120,7 @@ export type Section = {
   anchor: string;
   categoryId: number | null;
   bannerId: number | null;
+  brandGroup: 'it' | 'stationery' | '';
   titleAr: string;
   titleEn: string;
   subtitleAr: string;

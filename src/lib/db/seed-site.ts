@@ -178,9 +178,88 @@ export const SEED_BENEFITS: SeedBenefit[] = [
 ];
 
 /* ── Marques ─────────────────────────────────────────────────────── */
-export const SEED_BRANDS = [
-  'FABER-CASTELL', 'BIC', 'STABILO', 'CASIO', 'MAPED', 'PILOT', 'DOUBLE A', 'JANSPORT',
-].map((name, i) => ({ name, searchQuery: name.split(' ')[0], sort: (i + 1) * 10 }));
+export type SeedBrand = {
+  name: string;
+  group: 'it' | 'stationery' | '';
+  logoFile?: string; // file inside /brands/ (no extension)
+  searchQuery?: string;
+  sort: number;
+};
+
+/** Helper to build an IT-brand entry pointing at /brands/<slug>.svg. */
+const it = (name: string, slug: string, sort: number): SeedBrand => ({
+  name, group: 'it', logoFile: slug, searchQuery: name, sort,
+});
+/** Helper to build a stationery-brand entry pointing at /brands/<slug>.svg. */
+const st = (name: string, slug: string, sort: number): SeedBrand => ({
+  name, group: 'stationery', logoFile: slug, searchQuery: name, sort,
+});
+
+export const SEED_BRANDS: SeedBrand[] = [
+  // ── Informatique, imprimantes & consommables (ruban bleu) ──
+  it('HP',              'hp',              10),
+  it('Canon',           'canon',           20),
+  it('Epson',           'epson',           30),
+  it('Brother',         'brother',         40),
+  it('Xerox',           'xerox',           50),
+  it('Kyocera',         'kyocera',         60),
+  it('Ricoh',           'ricoh',           70),
+  it('Lexmark',         'lexmark',         80),
+  it('Samsung',         'samsung',         90),
+  it('Dell',            'dell',           100),
+  it('Lenovo',          'lenovo',         110),
+  it('ASUS',            'asus',           120),
+  it('Acer',            'acer',           130),
+  it('Apple',           'apple',          140),
+  it('Intel',           'intel',          150),
+  it('Microsoft',       'microsoft',      160),
+  it('Logitech',        'logitech',       170),
+  it('Kingston',        'kingston',       180),
+  it('LG',              'lg',             190),
+  it('Toshiba',         'toshiba',        200),
+  it('Sony',            'sony',           210),
+  it('MSI',             'msi',            220),
+  it('NVIDIA',          'nvidia',         230),
+  it('AMD',             'amd',            240),
+  it('Corsair',         'corsair',        250),
+  it('Seagate',         'seagate',        260),
+  it('Western Digital', 'western-digital',270),
+  it('SanDisk',         'sandisk',        280),
+  it('Transcend',       'transcend',      290),
+  it('Panasonic',       'panasonic',      300),
+  it('BenQ',            'benq',           310),
+  it('ViewSonic',       'viewsonic',      320),
+  it('Cisco',           'cisco',          330),
+  it('Netgear',         'netgear',        340),
+  it('TP-Link',         'tp-link',        350),
+  it('Razer',           'razer',          360),
+  it('3M',              '3m',             370),
+
+  // ── Scolaire & papeterie (ruban clair) ──
+  st('BIC',            'bic',            510),
+  st('Faber-Castell',  'faber-castell',  520),
+  st('Maped',          'maped',          530),
+  st('Stabilo',        'stabilo',        540),
+  st('Pilot',          'pilot',          550),
+  st('Casio',          'casio',          560),
+  st('Pentel',         'pentel',         570),
+  st('Staedtler',      'staedtler',      580),
+  st('Pelikan',        'pelikan',        590),
+  st('Sharpie',        'sharpie',        600),
+  st('Moleskine',      'moleskine',      610),
+  st('Crayola',        'crayola',        620),
+  st('Post-it',        'post-it',        630),
+  st('Oxford',         'oxford',         640),
+  st('Double A',       'double-a',       650),
+  st('Leitz',          'leitz',          660),
+  st('Deli',           'deli',           670),
+  st('Jansport',       'jansport',       680),
+  st('Milan',          'milan',          690),
+  st('Giotto',         'giotto',         700),
+  st('Canson',         'canson',         710),
+  st('Reeves',         'reeves',         720),
+  st('Al Manhaj',      'al-manhaj',      730),
+];
 
 /* ── Liens de navigation ─────────────────────────────────────────── */
 export type SeedNavLink = {
@@ -274,6 +353,8 @@ export type SeedSection = {
   categorySlug?: string;
   /** Référence au n-ième bandeau d'un emplacement donné (bandeaux de vente). */
   bannerRef?: { placement: string; index: number };
+  /** Pour les sections « brands » : quel groupe de marques afficher ('it' ou 'stationery'). */
+  brandGroup?: 'it' | 'stationery' | '';
   titleAr?: string; titleEn?: string;
   subtitleAr?: string; subtitleEn?: string;
   bodyAr?: string; bodyEn?: string;
@@ -326,9 +407,18 @@ export const SEED_SECTIONS: SeedSection[] = [
     subtitleAr: 'أسعار مختارة لفترة محدودة', subtitleEn: 'Selected prices for a limited time',
   },
 
+  /* Ruban informatique, imprimantes & consommables (fond bleu, logos blancs) */
   {
-    key: 'brands', type: 'brands', sort: 120,
-    titleAr: 'أفضل العلامات التجارية', titleEn: 'Top Brands',
+    key: 'brands-it', type: 'brands', anchor: 'brands-it', theme: 'blue', brandGroup: 'it', sort: 120,
+    titleAr: 'تقنية ومعلوماتية', titleEn: 'IT, Printers & Consumables',
+    subtitleAr: 'أكبر العلامات العالمية في الحواسيب والطابعات', subtitleEn: 'Leading brands in computing & printing',
+  },
+
+  /* Ruban scolaire & papeterie (fond clair) */
+  {
+    key: 'brands-stationery', type: 'brands', anchor: 'brands-stationery', theme: 'light', brandGroup: 'stationery', sort: 125,
+    titleAr: 'لوازم مدرسية ومكتبية', titleEn: 'School & Office Supplies',
+    subtitleAr: 'العلامات الموثوقة للطلاب والمكاتب', subtitleEn: 'Trusted brands for students & offices',
   },
 
   { key: 'service', type: 'service', anchor: 'business', sort: 130 },

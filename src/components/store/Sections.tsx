@@ -155,23 +155,37 @@ function SaleSection({ section }: { section: Section }) {
 /* ── Marques ─────────────────────────────────────────────────────── */
 function BrandsSection({ section }: { section: Section }) {
   const { content, showResults } = useStore();
-  if (!content.brands.length) return null;
+  const group = section.brandGroup;
+  const brands = group
+    ? content.brands.filter((b) => b.group === group)
+    : content.brands;
+  if (!brands.length) return null;
+
+  const theme = section.theme || 'light';
+  // Duplicate the list twice so the CSS marquee can loop seamlessly.
+  const loop = [...brands, ...brands];
+
   return (
-    <section className="container brands">
+    <section className={`container brands brands-${theme}`}>
       <Heading section={section} />
-      <div className="brand-row">
-        {content.brands.map((brand) => (
-          <button
-            className="brand-btn"
-            key={brand.id}
-            onClick={() => showResults(brand.searchQuery || brand.name)}
-          >
-            {brand.logoUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={brand.logoUrl} alt={brand.name} />
-            ) : brand.name}
-          </button>
-        ))}
+      <div className={`brand-track brand-track-${theme}`}>
+        <div className="brand-row brand-row-marquee">
+          {loop.map((brand, i) => (
+            <button
+              className={`brand-btn brand-btn-${theme}`}
+              key={`${brand.id}-${i}`}
+              onClick={() => showResults(brand.searchQuery || brand.name)}
+              title={brand.name}
+              tabIndex={i < brands.length ? 0 : -1}
+              aria-hidden={i >= brands.length}
+            >
+              {brand.logoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={brand.logoUrl} alt={brand.name} />
+              ) : brand.name}
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );

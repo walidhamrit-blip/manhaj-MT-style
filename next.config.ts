@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   poweredByHeader: false,
+  // Autorise les iframes/previews Arena en dev.
+  allowedDevOrigins: ['*.e2b.app', 'localhost:3000'],
 };
 
 export default nextConfig;

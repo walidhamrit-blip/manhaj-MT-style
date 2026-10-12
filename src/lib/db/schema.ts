@@ -32,6 +32,7 @@ export const SCHEMA_STATEMENTS: string[] = [
      anchor        text not null default '',
      category_id   integer,
      banner_id     integer,
+     brand_group   text not null default '',
      title_ar      text not null default '',
      title_en      text not null default '',
      subtitle_ar   text not null default '',
@@ -45,6 +46,7 @@ export const SCHEMA_STATEMENTS: string[] = [
      created_at    timestamptz not null default now(),
      updated_at    timestamptz not null default now()
    )`,
+  `alter table sections add column if not exists brand_group text not null default ''`,
 
   /* ── Catégories / rayons ─────────────────────────────────────────── */
   `create table if not exists categories (
@@ -151,6 +153,7 @@ export const SCHEMA_STATEMENTS: string[] = [
   `create table if not exists brands (
      id            serial primary key,
      name          text not null default '',
+     "group"       text not null default '',
      search_query  text not null default '',
      logo_url      text not null default '',
      sort          integer not null default 0,
@@ -158,6 +161,7 @@ export const SCHEMA_STATEMENTS: string[] = [
      created_at    timestamptz not null default now(),
      updated_at    timestamptz not null default now()
    )`,
+  `alter table brands add column if not exists "group" text not null default ''`,
 
   /* ── Liens & raccourcis (menu principal, tiroir, mégamenu, tuiles, pied de page) ── */
   `create table if not exists nav_links (
