@@ -162,23 +162,30 @@ function BrandsSection({ section }: { section: Section }) {
   if (!brands.length) return null;
 
   const theme = section.theme || 'light';
+  // Duplicate the list twice so the CSS marquee can loop seamlessly.
+  const loop = [...brands, ...brands];
+
   return (
     <section className={`container brands brands-${theme}`}>
       <Heading section={section} />
-      <div className={`brand-row brand-row-${theme}`}>
-        {brands.map((brand) => (
-          <button
-            className={`brand-btn brand-btn-${theme}`}
-            key={brand.id}
-            onClick={() => showResults(brand.searchQuery || brand.name)}
-            title={brand.name}
-          >
-            {brand.logoUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={brand.logoUrl} alt={brand.name} />
-            ) : brand.name}
-          </button>
-        ))}
+      <div className={`brand-track brand-track-${theme}`}>
+        <div className="brand-row brand-row-marquee">
+          {loop.map((brand, i) => (
+            <button
+              className={`brand-btn brand-btn-${theme}`}
+              key={`${brand.id}-${i}`}
+              onClick={() => showResults(brand.searchQuery || brand.name)}
+              title={brand.name}
+              tabIndex={i < brands.length ? 0 : -1}
+              aria-hidden={i >= brands.length}
+            >
+              {brand.logoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={brand.logoUrl} alt={brand.name} />
+              ) : brand.name}
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
