@@ -188,6 +188,7 @@ export async function getBrands(db?: DbClient): Promise<Brand[]> {
   return rows.map((r) => ({
     id: num(r.id),
     name: str(r.name),
+    group: (str(r.group) || '') as Brand['group'],
     searchQuery: str(r.search_query),
     logoUrl: str(r.logo_url),
     sort: num(r.sort),
@@ -222,6 +223,7 @@ export function mapSection(r: Row): Section {
     anchor: str(r.anchor),
     categoryId: numOrNull(r.category_id),
     bannerId: numOrNull(r.banner_id),
+    brandGroup: (str(r.brand_group) || '') as Section['brandGroup'],
     titleAr: str(r.title_ar),
     titleEn: str(r.title_en),
     subtitleAr: str(r.subtitle_ar),

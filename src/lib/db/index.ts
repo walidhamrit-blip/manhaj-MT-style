@@ -274,9 +274,10 @@ async function install(db: DbClient): Promise<void> {
 
   /* Marques */
   for (const b of SEED_BRANDS) {
+    const logoUrl = b.logoFile ? `/brands/${b.logoFile}.svg` : '';
     await db.query(
-      `insert into brands (name, search_query, sort) values ($1,$2,$3)`,
-      [b.name, b.searchQuery, b.sort],
+      `insert into brands (name, "group", search_query, logo_url, sort) values ($1,$2,$3,$4,$5)`,
+      [b.name, b.group || '', b.searchQuery ?? b.name, logoUrl, b.sort],
     );
   }
 
@@ -320,13 +321,13 @@ async function install(db: DbClient): Promise<void> {
     }
     await db.query(
       `insert into sections
-         (key, type, anchor, category_id, banner_id, title_ar, title_en, subtitle_ar, subtitle_en,
+         (key, type, anchor, category_id, banner_id, brand_group, title_ar, title_en, subtitle_ar, subtitle_en,
           body_ar, body_en, icon, theme, sort, active)
-       values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,true)
+       values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,true)
        on conflict (key) do nothing`,
       [
         s.key, s.type, s.anchor ?? '', s.categorySlug ? categoryId.get(s.categorySlug) ?? null : null,
-        bannerId, s.titleAr ?? '', s.titleEn ?? '', s.subtitleAr ?? '', s.subtitleEn ?? '',
+        bannerId, s.brandGroup ?? '', s.titleAr ?? '', s.titleEn ?? '', s.subtitleAr ?? '', s.subtitleEn ?? '',
         s.bodyAr ?? '', s.bodyEn ?? '', s.icon ?? '', s.theme ?? '', s.sort,
       ],
     );

@@ -155,16 +155,23 @@ function SaleSection({ section }: { section: Section }) {
 /* ── Marques ─────────────────────────────────────────────────────── */
 function BrandsSection({ section }: { section: Section }) {
   const { content, showResults } = useStore();
-  if (!content.brands.length) return null;
+  const group = section.brandGroup;
+  const brands = group
+    ? content.brands.filter((b) => b.group === group)
+    : content.brands;
+  if (!brands.length) return null;
+
+  const theme = section.theme || 'light';
   return (
-    <section className="container brands">
+    <section className={`container brands brands-${theme}`}>
       <Heading section={section} />
-      <div className="brand-row">
-        {content.brands.map((brand) => (
+      <div className={`brand-row brand-row-${theme}`}>
+        {brands.map((brand) => (
           <button
-            className="brand-btn"
+            className={`brand-btn brand-btn-${theme}`}
             key={brand.id}
             onClick={() => showResults(brand.searchQuery || brand.name)}
+            title={brand.name}
           >
             {brand.logoUrl ? (
               // eslint-disable-next-line @next/next/no-img-element

@@ -89,6 +89,14 @@ const THEME_OPTIONS: FieldOption[] = [
   { value: 'orange', label: ['Orange', 'برتقالي'] },
   { value: 'green', label: ['Vert', 'أخضر'] },
   { value: 'navy', label: ['Bleu foncé', 'أزرق غامق'] },
+  { value: 'blue', label: ['Bleu IT (logos blancs)', 'أزرق تقني (شعارات بيضاء)'] },
+  { value: 'light', label: ['Clair (fond blanc)', 'فاتح (خلفية بيضاء)'] },
+];
+
+const BRAND_GROUP_OPTIONS: FieldOption[] = [
+  { value: '', label: ['Toutes les marques', 'كل العلامات'] },
+  { value: 'it', label: ['Informatique & imprimantes', 'تقنية وطابعات'] },
+  { value: 'stationery', label: ['Scolaire & papeterie', 'مدرسية وقرطاسية'] },
 ];
 
 const LOCATION_OPTIONS: FieldOption[] = [
@@ -204,6 +212,7 @@ export const RESOURCES: ResourceDef[] = [
       { name: 'anchor', label: ['Ancre du lien (#…)', 'المرساة'], type: 'text', hint: ['Permet aux menus de pointer vers cette section', 'تسمح للقوائم بالانتقال إلى هذا القسم'] },
       { name: 'category_id', label: ['Rayon affiché', 'القسم المعروض'], type: 'reference', reference: { resource: 'categories', labelField: 'name_ar', labelFieldEn: 'name_en' } },
       { name: 'banner_id', label: ['Bandeau affiché', 'البانر المعروض'], type: 'reference', reference: { resource: 'banners', labelField: 'title_ar', labelFieldEn: 'title_en' } },
+      { name: 'brand_group', label: ['Groupe de marques', 'مجموعة العلامات'], type: 'select', options: BRAND_GROUP_OPTIONS, hint: ['Pour les sections « Marques »', 'لأقسام العلامات التجارية'] },
       { name: 'title', label: ['Titre', 'العنوان'], type: 'bilingual-text', showInList: true },
       { name: 'subtitle', label: ['Sous-titre', 'العنوان الفرعي'], type: 'bilingual-text' },
       { name: 'body', label: ['Texte', 'النص'], type: 'bilingual-textarea' },
@@ -329,6 +338,7 @@ export const RESOURCES: ResourceDef[] = [
     sortField: 'sort',
     fields: [
       { name: 'name', label: ['Nom affiché', 'الاسم المعروض'], type: 'text', required: true, showInList: true },
+      { name: 'group', label: ['Ruban', 'الشريط'], type: 'select', options: BRAND_GROUP_OPTIONS, showInList: true },
       { name: 'search_query', label: ['Recherche associée', 'البحث المرتبط'], type: 'text', hint: ['Mot-clé utilisé lors du clic', 'الكلمة المستخدمة عند النقر'] },
       { name: 'logo_url', label: ['Logo', 'الشعار'], type: 'image' },
       { name: 'sort', label: ['Ordre d’affichage', 'ترتيب العرض'], type: 'number', default: 0 },
