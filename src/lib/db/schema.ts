@@ -257,3 +257,19 @@ export const SCHEMA_STATEMENTS: string[] = [
 
 /** Version du schéma — sert à rejouer les créations de tables après une mise à jour. */
 export const SCHEMA_VERSION = '1';
+
+/**
+ * Unicité d'une marque par (nom, ruban).
+ *
+ * Volontairement séparé de {@link SCHEMA_STATEMENTS} : une base existante peut
+ * déjà contenir des doublons, et `create unique index` échouerait. Ces
+ * instructions doivent donc être appliquées **après** la déduplication
+ * (voir `dedupeBrands` dans `./index`), mais **avant** les insertions avec
+ * `on conflict (name, "group")` qui s'appuient sur l'index.
+ */
+export const BRAND_UNIQUE_INDEX_STATEMENTS: string[] = [
+  `create unique index if not exists brands_name_group_key on brands (name, "group")`,
+];
+
+/** Nom de l'index d'unicité (utilisé pour détecter une création concurrente). */
+export const BRAND_UNIQUE_INDEX_NAME = 'brands_name_group_key';

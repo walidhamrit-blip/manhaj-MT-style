@@ -72,7 +72,12 @@ html[dir=rtl] .product{direction:rtl}.product:hover{transform:translateY(-3px);b
 .brand-row-marquee:hover{animation-play-state:paused}
 @keyframes brand-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .brand-btn{flex-shrink:0;position:relative;min-width:140px;height:62px;display:flex;align-items:center;justify-content:center;padding:0 18px;color:#33454f;background:#f8f9fa;border:1px solid #e4e8ea;font:900 13px "Inter",sans-serif;transition:.2s;overflow:hidden;border-radius:3px}
-html[dir=rtl] .brand-row-marquee{animation-direction:reverse}
+/* En arabe (RTL) la ligne de marques déborde vers la gauche : elle doit donc
+   avancer vers la droite (+50 %) pour rester cadrée. L'ancien « reverse »
+   rejouait l'animation LTR (-50 %), ce qui poussait le ruban hors du cadre :
+   il se vidait au fil du défilement. */
+html[dir=rtl] .brand-row-marquee{animation-name:brand-scroll-rtl}
+@keyframes brand-scroll-rtl{from{transform:translateX(0)}to{transform:translateX(50%)}}
 .brand-btn img{max-width:110px;max-height:34px;display:block;object-fit:contain;filter:none}
 .brand-btn:hover{color:var(--red);border-color:var(--red);transform:translateY(-2px)}
 .brand-btn-light{background:#f8f9fa;border-color:#e4e8ea;color:#33454f}
