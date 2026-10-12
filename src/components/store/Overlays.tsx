@@ -13,7 +13,7 @@ export default function Overlays() {
   const {
     content, lang, t, pick, money, cartItems, cartCount, subtotal, deliveryFee, total, cartOpen, setCartOpen,
     changeQty, removeFromCart, clearCart, modal, closeModal, toasts, notify, drawerOpen, setDrawerOpen,
-    megaOpen, setMegaOpen, openModal,
+    setMegaOpen, openModal,
   } = useStore();
 
   const [showBack, setShowBack] = useState(false);
@@ -38,7 +38,7 @@ export default function Overlays() {
     return () => window.removeEventListener('keydown', onKey);
   }, [closeModal, setCartOpen, setDrawerOpen, setMegaOpen]);
 
-  const overlayActive = cartOpen || drawerOpen || megaOpen;
+  const overlayActive = cartOpen || drawerOpen;
   const whatsapp = String(content.settings['contact.whatsapp'] ?? '');
 
   const openCheckout = () => {

@@ -150,6 +150,7 @@ export const SEED_TEXTS: SeedText[] = [
   { key: 'footer.subscribe', section: 'footer', ar: 'اشتراك', en: 'SUBSCRIBE' },
   { key: 'footer.subscribed', section: 'footer', ar: 'شكراً لاشتراكك في عروضنا', en: 'Thank you for subscribing' },
   { key: 'footer.subscribe_error', section: 'footer', ar: 'تعذّر تسجيل بريدك، حاول لاحقاً', en: 'Could not save your email, please try again' },
+  { key: 'footer.admin', section: 'footer', ar: 'لوحة التحكم', en: 'Administration' },
   { key: 'footer.copyright', section: 'footer', ar: 'شركة المنهج للقرطاسية. جميع الحقوق محفوظة.', en: 'Al Manhaj Stationery. All rights reserved.' },
 
   /* ── Divers ────────────────────────────────────────────────────── */
