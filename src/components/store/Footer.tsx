@@ -153,6 +153,10 @@ export default function Footer() {
 
         <div className="copyright">
           © {new Date().getFullYear()} {t('footer.copyright')}
+          {' · '}
+          <a href="/admin" className="admin-link">
+            {t('footer.admin', 'Administration')}
+          </a>
         </div>
       </footer>
     </>

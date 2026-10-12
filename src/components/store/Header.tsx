@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useStore } from './context';
 import type { NavLink } from '@/lib/types';
 
@@ -53,6 +53,21 @@ export default function Header() {
 
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('');
+  const navRef = useRef<HTMLDivElement>(null);
+
+  /* Ferme le mégamenu lors d'un clic en dehors de la barre de navigation. */
+  useEffect(() => {
+    if (!megaOpen) return;
+    const onPointerDown = (event: Event) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) setMegaOpen(false);
+    };
+    document.addEventListener('mousedown', onPointerDown);
+    document.addEventListener('touchstart', onPointerDown);
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown);
+      document.removeEventListener('touchstart', onPointerDown);
+    };
+  }, [megaOpen, setMegaOpen]);
 
   const utilityLinks = content.navLinks.filter((l) => l.location === 'utility');
   const mainLinks = content.navLinks.filter((l) => l.location === 'main');
@@ -292,7 +307,7 @@ export default function Header() {
 
         {mainLinks.length ? (
           <nav className="category-nav">
-            <div className="container nav-inner">
+            <div className="container nav-inner" ref={navRef}>
               <button className="departments" onClick={() => setMegaOpen(!megaOpen)}>
                 <i className="fa-solid fa-bars" />
                 <span>{t('header.all_departments', 'TOUS LES RAYONS')}</span>
