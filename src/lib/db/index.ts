@@ -149,6 +149,8 @@ export function ensureDatabase(): Promise<DbClient> {
       const db = await getDb();
       if (!(await isInstalled(db))) {
         await install(db);
+      } else {
+        await migrateBrandRibbons(db);
       }
       return db;
     })().catch((err) => {
@@ -272,14 +274,8 @@ async function install(db: DbClient): Promise<void> {
     );
   }
 
-  /* Marques */
-  for (const b of SEED_BRANDS) {
-    const logoUrl = b.logoFile ? `/brands/${b.logoFile}.svg` : '';
-    await db.query(
-      `insert into brands (name, "group", search_query, logo_url, sort) values ($1,$2,$3,$4,$5)`,
-      [b.name, b.group || '', b.searchQuery ?? b.name, logoUrl, b.sort],
-    );
-  }
+  /* Marques (rubans bleu & clair) */
+  await seedBrands(db);
 
   /* Liens de navigation */
   for (const l of SEED_NAV_LINKS) {
@@ -344,8 +340,89 @@ async function install(db: DbClient): Promise<void> {
      on conflict (key) do update set value = excluded.value, updated_at = now()`,
     [JSON.stringify(new Date().toISOString())],
   );
+  await setBrandRibbonsVersion(db);
 
   console.log('[manhaj] base de données prête.');
+}
+
+/* ────────────────────────────────────────────────────────────────────
+ *  Rubans de marques (accueil)
+ *
+ *  Migration CIBLÉE : elle ajoute les colonnes manquantes (instructions de
+ *  schéma idempotentes), puis ne touche qu'aux marques et aux deux sections
+ *  « brands-it » / « brands-stationery ». Elle ne réinstalle PAS le catalogue
+ *  (produits, bannières, magasins, avantages, navigation), contrairement à
+ *  un bump de SCHEMA_VERSION qui efface et reseme toutes ces tables.
+ * ──────────────────────────────────────────────────────────────────── */
+
+/** Version du contenu des rubans de marques. Incrémenter pour rejouer la migration. */
+export const BRAND_RIBBONS_VERSION = '2';
+
+async function seedBrands(db: DbClient): Promise<void> {
+  /* Insérer d'abord, supprimer ensuite les anciennes lignes seulement : sans
+     transaction disponible (client HTTP Neon), une interruption ne laisse
+     jamais la liste de marques vide. */
+  const [maxRow] = await db.query<{ max_id: number | string | null }>(
+    'select coalesce(max(id), 0) as max_id from brands',
+  );
+  const previousMaxId = Number(maxRow?.max_id ?? 0);
+
+  for (const b of SEED_BRANDS) {
+    const logoUrl = b.logoFile ? `/brands/${b.logoFile}.svg` : '';
+    await db.query(
+      `insert into brands (name, "group", search_query, logo_url, sort) values ($1,$2,$3,$4,$5)`,
+      [b.name, b.group || '', b.searchQuery ?? b.name, logoUrl, b.sort],
+    );
+  }
+  await db.query('delete from brands where id <= $1', [previousMaxId]);
+
+  for (const s of SEED_SECTIONS.filter((x) => x.type === 'brands')) {
+    await db.query(
+      `insert into sections
+         (key, type, anchor, category_id, banner_id, brand_group, title_ar, title_en, subtitle_ar, subtitle_en,
+          body_ar, body_en, icon, theme, sort, active)
+       values ($1,$2,$3,null,null,$4,$5,$6,$7,$8,'','','',$9,$10,true)
+       on conflict (key) do update set brand_group = excluded.brand_group, theme = excluded.theme`,
+      [
+        s.key, s.type, s.anchor ?? '', s.brandGroup ?? '', s.titleAr ?? '', s.titleEn ?? '',
+        s.subtitleAr ?? '', s.subtitleEn ?? '', s.theme ?? '', s.sort,
+      ],
+    );
+  }
+}
+
+async function setBrandRibbonsVersion(db: DbClient): Promise<void> {
+  await db.query(
+    `insert into settings (key, value) values ('app.brands_version', $1::jsonb)
+     on conflict (key) do update set value = excluded.value, updated_at = now()`,
+    [JSON.stringify(BRAND_RIBBONS_VERSION)],
+  );
+}
+
+/** Applique le nouveau contenu des rubans une seule fois sur une base déjà installée. */
+async function migrateBrandRibbons(db: DbClient): Promise<void> {
+  let current = '';
+  try {
+    const rows = await db.query<{ value: unknown }>(
+      `select value from settings where key = 'app.brands_version' limit 1`,
+    );
+    current = rows.length ? String(typeof rows[0].value === 'string' ? rows[0].value : JSON.stringify(rows[0].value)) : '';
+  } catch {
+    current = '';
+  }
+  if (current.includes(BRAND_RIBBONS_VERSION)) return;
+
+  console.log('[manhaj] mise à jour des rubans de marques…');
+  /* Les colonnes ajoutées après la première installation (brands.group,
+     sections.brand_group) n'existent pas encore sur une base ancienne. Les
+     instructions du schéma sont idempotentes (create/add ... if not exists),
+     donc on les rejoue ici avant de toucher aux marques. */
+  for (const statement of SCHEMA_STATEMENTS) {
+    await db.exec(statement);
+  }
+  await seedBrands(db);
+  await setBrandRibbonsVersion(db);
+  console.log('[manhaj] rubans de marques à jour.');
 }
 
 /**
