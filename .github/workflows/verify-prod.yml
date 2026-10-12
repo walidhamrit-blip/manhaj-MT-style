@@ -9,6 +9,11 @@ on:
       # (le fichier sera retiré après la vérification)
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
 jobs:
   verifier:
     runs-on: ubuntu-latest
@@ -28,4 +33,17 @@ jobs:
       - name: Vérifier le site en production
         env:
           SITE_URL: https://manhaj-mt-style.vercel.app/
-        run: node .github/verify-prod.mjs
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          node .github/verify-prod.mjs 2>&1 | tee report.txt
+          status=${PIPESTATUS[0]}
+          {
+            echo "**Contrôle production — $(date -u '+%Y-%m-%d %H:%M UTC')**"
+            echo
+            echo '```'
+            cat report.txt
+            echo '```'
+          } > comment.md
+          gh pr comment 5 --body-file comment.md || true
+          exit $status
