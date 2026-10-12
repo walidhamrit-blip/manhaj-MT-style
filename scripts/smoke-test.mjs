@@ -125,7 +125,7 @@ async function main() {
     const home = await get('/', false);
     check(
       'le site public affiche la nouvelle valeur',
-      home.body.includes(marker) && home.body.includes('٧٧٫٥٠'),
+      home.body.includes(marker) && home.body.includes('77.50'),
       'texte + prix mis à jour',
     );
 

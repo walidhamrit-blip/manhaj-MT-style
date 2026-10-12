@@ -4,20 +4,15 @@ const ARABIC_DIGITS = '٠١٢٣٤٥٦٧٨٩';
 
 /**
  * Formate un montant de façon déterministe (identique côté serveur et
- * navigateur) : chiffres arabes-indiens en arabe, chiffres latins en anglais.
+ * navigateur) : chiffres latins (0-9) dans les deux langues, y compris en
+ * arabe — seule la devise change selon la langue.
  */
-export function formatMoney(value: number, lang: Lang, currency: string): string {
+export function formatMoney(value: number, currency: string): string {
   const safe = Number.isFinite(value) ? value : 0;
   const rounded = Math.round(safe * 100) / 100;
   const [integer, decimals] = rounded.toFixed(2).split('.');
   const grouped = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  let out = decimals === '00' ? grouped : `${grouped}.${decimals}`;
-  if (lang === 'ar') {
-    out = out
-      .replace(/[0-9]/g, (d) => ARABIC_DIGITS[Number(d)])
-      .replace(/,/g, '٬')
-      .replace('.', '٫');
-  }
+  const out = decimals === '00' ? grouped : `${grouped}.${decimals}`;
   return `${out} ${currency}`;
 }
 

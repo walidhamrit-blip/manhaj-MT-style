@@ -134,10 +134,7 @@ export function StoreProvider({ content, children }: { content: SiteContent; chi
     ? String(content.settings['shop.currency_ar'] ?? 'د.ل')
     : String(content.settings['shop.currency_en'] ?? 'LYD');
 
-  const money = useCallback(
-    (value: number) => formatMoney(value, lang, currency),
-    [lang, currency],
-  );
+  const money = useCallback((value: number) => formatMoney(value, currency), [currency]);
 
   const notify = useCallback((message: string) => {
     toastId.current += 1;
