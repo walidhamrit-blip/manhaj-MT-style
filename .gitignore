@@ -1,0 +1,33 @@
+# dépendances
+/node_modules
+/.pnp
+.pnp.js
+
+# Next.js
+/.next/
+/out/
+next-env.d.ts
+
+# production
+/build
+
+# base de données locale (fallback PGlite utilisé quand DATABASE_URL est absente)
+/.pglite/
+
+# fichiers temporaires de migration (extraction du site d'origine)
+/.migration/
+
+# variables d'environnement — ne jamais committer
+.env
+.env*.local
+.env.production
+
+# vercel
+.vercel
+
+# divers
+.DS_Store
+*.pem
+npm-debug.log*
+yarn-error.log*
+*.tsbuildinfo
