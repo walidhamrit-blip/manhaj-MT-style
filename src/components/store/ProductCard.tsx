@@ -8,30 +8,47 @@ export default function ProductCard({ product }: { product: Product }) {
   const { pick, money, t, addToCart, quickView, wishlist, toggleWishlist, notify } = useStore();
   const discount = discountPercent(product.price, product.oldPrice);
   const isFavourite = wishlist.includes(product.id);
+  const name = pick(product.nameAr, product.nameEn);
+
+  // Toute la carte ouvre la fiche produit : les boutons internes stoppent
+  // la propagation pour ne pas déclencher l'ouverture.
+  const open = () => quickView(product.id);
 
   return (
-    <article className="product">
+    <article
+      className="product"
+      role="button"
+      tabIndex={0}
+      aria-label={name}
+      onClick={open}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          open();
+        }
+      }}
+    >
       {discount > 0 ? <span className="discount">-{discount}%</span> : null}
       <span className="stock">{pick(product.stockAr, product.stockEn) || t('catalog.in_stock', 'En stock')}</span>
       <button
         className={`fav${isFavourite ? ' active' : ''}`}
         aria-label="Favori"
-        onClick={() => toggleWishlist(product.id)}
+        onClick={(event) => {
+          event.stopPropagation();
+          toggleWishlist(product.id);
+        }}
       >
         <i className={`${isFavourite ? 'fa-solid' : 'fa-regular'} fa-heart`} />
       </button>
 
       <div className="product-image">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img loading="lazy" src={product.imageUrl} alt={pick(product.nameAr, product.nameEn)} />
-        <button className="quick" onClick={() => quickView(product.id)}>
-          {t('catalog.quick_view', 'Aperçu')}
-        </button>
+        <img loading="lazy" src={product.imageUrl} alt={name} />
       </div>
 
       <div className="product-info">
         <span className="brand">{product.brand}</span>
-        <div className="product-title">{pick(product.nameAr, product.nameEn)}</div>
+        <div className="product-title">{name}</div>
         <div className="rating">
           ★★★★★ <span>({product.rating})</span>
         </div>
@@ -42,13 +59,22 @@ export default function ProductCard({ product }: { product: Product }) {
           ) : null}
         </div>
         <div className="card-actions">
-          <button className="add" onClick={() => addToCart(product.id)}>
+          <button
+            className="add"
+            onClick={(event) => {
+              event.stopPropagation();
+              addToCart(product.id);
+            }}
+          >
             <i className="fa-solid fa-cart-plus" /> {t('catalog.add_to_cart', 'Ajouter au panier')}
           </button>
           <button
             className="compare"
             aria-label="Comparer"
-            onClick={() => notify(t('compare.updated', 'Liste de comparaison mise à jour'))}
+            onClick={(event) => {
+              event.stopPropagation();
+              notify(t('compare.updated', 'Liste de comparaison mise à jour'));
+            }}
           >
             <i className="fa-solid fa-code-compare" />
           </button>
