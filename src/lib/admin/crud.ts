@@ -321,6 +321,9 @@ export async function logActivity(
 export function readableError(error: unknown): string {
   const message = error instanceof Error ? error.message : String(error);
   if (message.includes('duplicate key')) {
+    if (message.includes('brands_name_group')) {
+      return 'Cette marque existe déjà dans ce ruban (mêmes nom et ruban).';
+    }
     if (message.includes('slug')) return 'Cet identifiant (slug) est déjà utilisé.';
     if (message.includes('key')) return 'Cette clé existe déjà.';
     if (message.includes('email')) return 'Cet e-mail est déjà enregistré.';

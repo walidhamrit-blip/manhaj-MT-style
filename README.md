@@ -31,6 +31,13 @@ Sans `DATABASE_URL`, l'application crée automatiquement une base **locale** dan
 9 bandeaux, 89 textes, 3 magasins…) sont installés à la première visite : aucune migration
 à lancer.
 
+Sur une base **déjà installée**, les mises à jour de contenu sont appliquées au démarrage par
+des migrations ciblées, versionnées dans `settings` (par exemple `app.brands_version` pour les
+rubans de marques) : elles ne touchent qu'aux tables concernées et ne réinstallent jamais le
+catalogue. Les marques sont protégées par un **index unique sur (nom, ruban)** — doublons
+supprimés automatiquement, insertions avec `on conflict` : un ruban affiche donc chaque marque
+une seule fois, même si plusieurs instances démarrent en même temps.
+
 > Mot de passe admin en local : celui de `ADMIN_PASSWORD` dans `.env.local`.
 
 En cas de message « base locale corrompue » (serveur tué brutalement pendant une écriture) :

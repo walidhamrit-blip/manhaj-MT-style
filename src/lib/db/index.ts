@@ -10,7 +10,7 @@
  * Le schéma et le contenu initial sont installés automatiquement au premier
  * accès (`ensureDatabase()`), ce qui évite toute étape de migration manuelle.
  */
-import { SCHEMA_STATEMENTS, SCHEMA_VERSION } from './schema';
+import { BRAND_UNIQUE_INDEX_NAME, BRAND_UNIQUE_INDEX_STATEMENTS, SCHEMA_STATEMENTS, SCHEMA_VERSION } from './schema';
 import { SEED_PRODUCTS } from './seed-catalog';
 import { SEED_TEXTS, SETTINGS_DEFS, SETTINGS_DEFAULTS } from './seed-texts';
 import {
@@ -274,7 +274,8 @@ async function install(db: DbClient): Promise<void> {
     );
   }
 
-  /* Marques (rubans bleu & clair) */
+  /* Marques (rubans bleu & clair) : index d'unicité d'abord, puis upsert. */
+  await ensureBrandUniqueIndex(db);
   await seedBrands(db);
 
   /* Liens de navigation */
@@ -356,25 +357,79 @@ async function install(db: DbClient): Promise<void> {
  * ──────────────────────────────────────────────────────────────────── */
 
 /** Version du contenu des rubans de marques. Incrémenter pour rejouer la migration. */
-export const BRAND_RIBBONS_VERSION = '2';
+export const BRAND_RIBBONS_VERSION = '3';
 
-async function seedBrands(db: DbClient): Promise<void> {
-  /* Insérer d'abord, supprimer ensuite les anciennes lignes seulement : sans
-     transaction disponible (client HTTP Neon), une interruption ne laisse
-     jamais la liste de marques vide. */
-  const [maxRow] = await db.query<{ max_id: number | string | null }>(
-    'select coalesce(max(id), 0) as max_id from brands',
+/**
+ * Supprime les marques dupliquées (même nom dans le même ruban) en conservant
+ * la plus ancienne (le plus petit `id`). Renvoie le nombre de lignes retirées.
+ *
+ * À exécuter avant {@link ensureBrandUniqueIndex} : une base de production peut
+ * déjà contenir des doublons (anciennes versions qui effaçaient puis
+ * réinséraient la liste à chaque démarrage).
+ */
+async function dedupeBrands(db: DbClient): Promise<number> {
+  const rows = await db.query<{ removed: number | string }>(
+    `with removed as (
+       delete from brands duplicate
+        using brands kept
+        where duplicate.name = kept.name
+          and duplicate."group" = kept."group"
+          and duplicate.id > kept.id
+       returning 1
+     )
+     select count(*)::int as removed from removed`,
   );
-  const previousMaxId = Number(maxRow?.max_id ?? 0);
+  return Number(rows[0]?.removed ?? 0);
+}
 
+/**
+ * Crée l'index d'unicité (nom, ruban) si nécessaire.
+ *
+ * Sur Vercel, plusieurs instances démarrent en parallèle : si une autre
+ * instance vient de créer l'index, `create index` échoue — ce n'est pas une
+ * erreur, on vérifie simplement que l'index existe bien.
+ */
+async function ensureBrandUniqueIndex(db: DbClient): Promise<void> {
+  for (const statement of BRAND_UNIQUE_INDEX_STATEMENTS) {
+    try {
+      await db.exec(statement);
+    } catch (error) {
+      const rows = await db.query(
+        'select 1 from pg_indexes where indexname = $1 limit 1',
+        [BRAND_UNIQUE_INDEX_NAME],
+      );
+      if (!rows.length) throw error;
+      console.log('[manhaj] index d’unicité des marques déjà créé par une autre instance.');
+    }
+  }
+}
+
+/**
+ * Insère les marques manquantes et met à jour les existantes (recherche, logo,
+ * ordre) sans jamais vider la table : « on conflict (name, "group") » s'appuie
+ * sur l'index unique, donc deux démarrages simultanés ne peuvent pas créer de
+ * doublon. La colonne `active` est laissée telle quelle : un ruban désactivé
+ * depuis l'administration le reste.
+ */
+async function seedBrands(db: DbClient): Promise<void> {
   for (const b of SEED_BRANDS) {
     const logoUrl = b.logoFile ? `/brands/${b.logoFile}.svg` : '';
     await db.query(
-      `insert into brands (name, "group", search_query, logo_url, sort) values ($1,$2,$3,$4,$5)`,
+      `insert into brands (name, "group", search_query, logo_url, sort)
+       values ($1, $2, $3, $4, $5)
+       on conflict (name, "group") do update set
+         search_query = excluded.search_query,
+         logo_url     = excluded.logo_url,
+         sort         = excluded.sort,
+         updated_at   = now()`,
       [b.name, b.group || '', b.searchQuery ?? b.name, logoUrl, b.sort],
     );
   }
-  await db.query('delete from brands where id <= $1', [previousMaxId]);
+
+  /* Les marques qui ne font plus partie de la liste sont retirées seulement
+     une fois les nouvelles en place : une interruption ne vide jamais le
+     ruban (le client HTTP Neon n'offre pas de transaction). */
+  await pruneBrands(db);
 
   for (const s of SEED_SECTIONS.filter((x) => x.type === 'brands')) {
     await db.query(
@@ -389,6 +444,30 @@ async function seedBrands(db: DbClient): Promise<void> {
       ],
     );
   }
+}
+
+/**
+ * Retire les lignes qui ne correspondent plus à la liste de référence
+ * (nom + ruban) : anciennes marques d'une liste précédente, ou doublons
+ * résiduels d'un autre ruban. Résultat : les rubans contiennent exactement la
+ * liste de référence, une fois chaque marque.
+ */
+async function pruneBrands(db: DbClient): Promise<void> {
+  const values: string[] = [];
+  const params: unknown[] = [];
+  for (const b of SEED_BRANDS) {
+    params.push(b.name, b.group || '');
+    values.push(`($${params.length - 1}::text, $${params.length}::text)`);
+  }
+  if (!values.length) return;
+  await db.query(
+    `delete from brands obsolete
+      where not exists (
+        select 1 from (values ${values.join(', ')}) as kept(name, brand_group)
+         where kept.name = obsolete.name and kept.brand_group = obsolete."group"
+      )`,
+    params,
+  );
 }
 
 async function setBrandRibbonsVersion(db: DbClient): Promise<void> {
@@ -413,16 +492,30 @@ async function migrateBrandRibbons(db: DbClient): Promise<void> {
   if (current.includes(BRAND_RIBBONS_VERSION)) return;
 
   console.log('[manhaj] mise à jour des rubans de marques…');
-  /* Les colonnes ajoutées après la première installation (brands.group,
+
+  /* 1. Les colonnes ajoutées après la première installation (brands.group,
      sections.brand_group) n'existent pas encore sur une base ancienne. Les
      instructions du schéma sont idempotentes (create/add ... if not exists),
      donc on les rejoue ici avant de toucher aux marques. */
   for (const statement of SCHEMA_STATEMENTS) {
     await db.exec(statement);
   }
+
+  /* 2. Doublons hérités : retirés avant de poser la contrainte d'unicité, qui
+     refuserait de se créer sur une table déjà dupliquée. */
+  const removed = await dedupeBrands(db);
+
+  /* 3. Unicité (nom, ruban) : c'est elle qui rend l'insertion ci-dessous sûre
+     même si plusieurs instances démarrent en même temps. */
+  await ensureBrandUniqueIndex(db);
+
+  /* 4. Contenu : mise à jour ligne par ligne (jamais de table vidée). */
   await seedBrands(db);
   await setBrandRibbonsVersion(db);
-  console.log('[manhaj] rubans de marques à jour.');
+
+  console.log(
+    `[manhaj] rubans de marques à jour${removed ? ` (${removed} doublon(s) supprimé(s))` : ''}.`,
+  );
 }
 
 /**
