@@ -157,6 +157,24 @@ export default function Footer() {
           <a href="/admin" className="admin-link">
             {t('footer.admin', 'Administration')}
           </a>
+          <a
+            className="footer-credit"
+            href="https://nokhba.net.ly/?utm_source=client_footer&utm_medium=badge&utm_campaign=client_credit"
+            target="_blank"
+            rel="sponsored nofollow noopener"
+            title="نخبة"
+            dir="ltr"
+          >
+            <img
+              src="https://nokhba.net.ly/badge/nukhba-badge-light.svg"
+              alt="نخبة | Website by Nukhba"
+              width={176}
+              height={44}
+              loading="lazy"
+              decoding="async"
+            />
+            <span>نخبة · Website by Nukhba</span>
+          </a>
         </div>
       </footer>
     </>
